@@ -1,5 +1,6 @@
 package com.example.aulatec;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -12,10 +13,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.recomendacoes.EscolherRecomendacoes;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
 
 public class ListaAulas extends AppCompatActivity {
-
     String diaSemana;
 
     @Override
@@ -23,9 +26,48 @@ public class ListaAulas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_lista_aulas);
-        exibirAulas();
+
+        int idModulo = getIntent().getIntExtra("id_modulo", 3);
+        BottomNavigationView barraNavegacao = findViewById(R.id.bottom_navigation);
+        barraNavegacao.setSelectedItemId(R.id.nav_aulas);
+
+        barraNavegacao.setOnItemSelectedListener(item -> {
+            int id = item.getItemId(); // pega o id do item clicado
+            if (id == R.id.nav_aulas) {
+                // já está nas aulas, não faz nada
+                return true;
+            } else if (id == R.id.nav_home) {
+                Intent intent = new Intent(ListaAulas.this, Home.class);
+                intent.putExtra("id_modulo", idModulo);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                return true;
+            }else if(id == R.id.nav_emails){
+                Intent intent = new Intent(ListaAulas.this, ListaProf.class);
+                intent.putExtra("id_modulo", idModulo);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                return true;
+            }else if(id == R.id.nav_recomendacoes){
+                Intent intent = new Intent(ListaAulas.this, EscolherRecomendacoes.class);
+                intent.putExtra("id_modulo", idModulo);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                return true;
+            }else if(id == R.id.nav_modulo){
+                Intent intent = new Intent(ListaAulas.this, TelaMod.class);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                return true;
+        }
+            return false;
+        });
+
+        exibirAulas(idModulo);
+
+
     }
-    public void exibirAulas(){
+    public void exibirAulas(int idModulo){
         try{
             DatabaseHelper bancoHelper = new DatabaseHelper(this);
             SQLiteDatabase bancoDados = bancoHelper.getReadableDatabase();
@@ -36,7 +78,8 @@ public class ListaAulas extends AppCompatActivity {
                     " p.nomeProf " +
                     "FROM aulas a " +
                     "INNER JOIN professores p ON a.id_professor = p.id_professor " +
-                    "ORDER BY a.diaSemana", null);
+                    "WHERE a.id_modulo = ? " +
+                    "ORDER BY a.diaSemana", new String[]{String.valueOf(idModulo)});
 
             if(cursor.moveToFirst()){
                 do{
@@ -63,7 +106,7 @@ public class ListaAulas extends AppCompatActivity {
                     String horaFim = cursor.getString(3);
                     int lab = cursor.getInt(4);
                     String nomeProfessor = cursor.getString(5);
-                    lista.add("\n"+ diaSemana + "\n" + nomeAula + "\n" + horaInicio + " - " + horaFim + "\nProfessor(a): "
+                    lista.add("\n"+ diaSemana + "\n" + idModulo + "°DS\n" + nomeAula + "\n" + horaInicio + " - " + horaFim + "\nProfessor(a): "
                             + nomeProfessor + "\nLab: " + lab + "\n");
                 }while (cursor.moveToNext());
             }

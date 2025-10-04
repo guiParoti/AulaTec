@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_modulo"
+        android:icon="@drawable/ic_modulo"
+        android:title="Modulos" />
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/nav_aulas"
+        android:icon="@drawable/ic_aulas"
+        android:title="Aulas" />
+
+    <item
+        android:id="@+id/nav_emails"
+        android:icon="@drawable/ic_emails"
+        android:title="Emails" />
+
+    <item
+        android:id="@+id/nav_recomendacoes"
+        android:icon="@drawable/ic_recomendacoes"
+        android:title="Recomendações" />
+</menu>

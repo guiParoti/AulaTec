@@ -1,5 +1,6 @@
 package com.example.aulatec;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -12,6 +13,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.recomendacoes.EscolherRecomendacoes;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
 
 public class ListaProf extends AppCompatActivity {
@@ -22,6 +26,41 @@ public class ListaProf extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_lista_prof);
         exibirLista();
+        int idModulo = getIntent().getIntExtra("id_modulo", 3);
+        BottomNavigationView barraNavegacao = findViewById(R.id.bottomNavigationView);
+        barraNavegacao.setSelectedItemId(R.id.nav_emails);
+
+        barraNavegacao.setOnItemSelectedListener(item -> {
+            int id = item.getItemId(); // pega o id do item clicado
+            if (id == R.id.nav_emails) {
+                // já está nos contatos dos professores, não faz nada
+                return true;
+            } else if (id == R.id.nav_home) {
+                Intent intent = new Intent(ListaProf.this, Home.class);
+                intent.putExtra("id_modulo", idModulo);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                return true;
+            }else if(id == R.id.nav_aulas){
+                Intent intent = new Intent(ListaProf.this, ListaAulas.class);
+                intent.putExtra("id_modulo", idModulo);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                return true;
+            }else if(id == R.id.nav_recomendacoes){
+                Intent intent = new Intent(ListaProf.this, EscolherRecomendacoes.class);
+                intent.putExtra("id_modulo", idModulo);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                return true;
+            }else if(id == R.id.nav_modulo){
+                Intent intent = new Intent(ListaProf.this, TelaMod.class);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                return true;
+            }
+            return false;
+        });
 
     }
 

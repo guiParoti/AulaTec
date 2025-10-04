@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="250dp"
-    tools:context="com.example.recomendacoes.EscolherRecomendacoes">
+    tools:context=".EscolherRecomendacoes">
 
+    <!-- CONTEÚDO PRINCIPAL -->
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-59dp">
+        android:background="#FFFFFF">
 
         <LinearLayout
-            android:layout_width="379dp"
-            android:layout_height="275dp"
+            android:id="@+id/container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:gravity="center_horizontal"
+            android:padding="24dp"
+            android:background="@android:color/transparent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
             <TextView
                 android:id="@+id/textView"
@@ -30,38 +33,60 @@
                 android:layout_height="wrap_content"
                 android:text="Selecione o tipo de recomendação"
                 android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:layout_marginBottom="24dp" />
 
             <Button
                 android:id="@+id/btnRCursos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#0B0B0B"
-                android:text="Recomendações de Cursos" />
+                android:text="Recomendações de Cursos"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#1E88E5"
+                android:layout_marginBottom="12dp" />
 
             <Button
                 android:id="@+id/btnRJogos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#0B0B0B"
-                android:text="Recomendações de Jogos" />
+                android:text="Recomendações de Jogos"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#43A047"
+                android:layout_marginBottom="12dp" />
 
             <Button
                 android:id="@+id/btnRFilmes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#0B0B0B"
-                android:text="Recomendações de Filmes" />
+                android:text="Recomendações de Filmes"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#E53935"
+                android:layout_marginBottom="12dp" />
 
             <Button
                 android:id="@+id/btnRApps"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#0B0B0B"
-                android:text="Recomendações de Apps" />
+                android:text="Recomendações de Apps"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#8E24AA" />
 
         </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- BARRA DE NAVEGAÇÃO -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:menu="@menu/barra_navegacao" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

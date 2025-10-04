@@ -12,6 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AulaTec">
         <activity
+            android:name=".FragmentAulas"
+            android:exported="false" />
+        <activity
+            android:name=".FragmentHome"
+            android:exported="false" />
+        <activity
+            android:name=".Home2"
+            android:exported="false"
+            android:theme="@style/Theme.AulaTec" />
+        <activity
+            android:name="com.example.recomendacoes.TipoCurso"
+            android:exported="false" />
+        <activity
             android:name="com.example.recomendacoes.EscolherRecomendacoes"
             android:exported="false" />
         <activity

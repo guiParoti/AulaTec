@@ -7,19 +7,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
+import androidx.fragment.app.Fragment;
 import com.example.recomendacoes.EscolherRecomendacoes;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Calendar;
 
@@ -33,14 +28,51 @@ public class Home extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
 
+        int idModulo = getIntent().getIntExtra("id_modulo", 3);
+
         // Pega o container onde vamos adicionar as aulas
         LinearLayout containerAulas = findViewById(R.id.containerAulas);
         //TextView que vai receber o dia da semana
         TextView txtDia = findViewById(R.id.txtdiaSem);
         TextView linkNsa = findViewById(R.id.txtLinkNsa);
-        Button btnProf = findViewById(R.id.btnListProf);
-        Button btnAulas = findViewById(R.id.btnVerAulas);
-        Button btnRecomendacoes = findViewById(R.id.btnRecomendacoes);
+//      Button btnProf = findViewById(R.id.btnListProf);
+//      Button btnAulas = findViewById(R.id.btnVerAulas);
+//      Button btnRecomendacoes = findViewById(R.id.btnRecomendacoes);
+        BottomNavigationView barraNavegacao = findViewById(R.id.bottom_navigation);
+        barraNavegacao.setSelectedItemId(R.id.nav_home);
+
+
+            barraNavegacao.setOnItemSelectedListener(item -> {
+                int id = item.getItemId(); // pega o id do item clicado
+                if (id == R.id.nav_home) {
+                    // já está no Home, não faz nada
+                    return true;
+                } else if (id == R.id.nav_aulas) {
+                    Intent intent = new Intent(Home.this, ListaAulas.class);
+                    intent.putExtra("id_modulo", idModulo);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+                    return true;
+                }else if(id == R.id.nav_emails){
+                    Intent intent = new Intent(Home.this, ListaProf.class);
+                    intent.putExtra("id_modulo", idModulo);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+                    return true;
+                }else if(id == R.id.nav_recomendacoes){
+                    Intent intent = new Intent(Home.this, EscolherRecomendacoes.class);
+                    intent.putExtra("id_modulo", idModulo);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+                    return true;
+                }else if(id == R.id.nav_modulo){
+                    Intent intent = new Intent(Home.this, TelaMod.class);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+                    return true;
+                }
+                return false;
+            });
 
         // Instancia a classe DatabaseHelper em um objeto pra poder acessar o banco de dados
         DatabaseHelper bdHelper = new DatabaseHelper(this);
@@ -58,29 +90,30 @@ public class Home extends AppCompatActivity {
 
         linkNsa.setOnClickListener(abrirNsa);
 
-        btnProf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Home.this, ListaProf.class);
-                startActivity(intent);
-            }
-        });
+//        btnProf.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(Home.this, ListaProf.class);
+//                startActivity(intent);
+//            }
+//        });
 
-        btnAulas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Home.this, ListaAulas.class);
-                startActivity(intent);
-            }
-        });
+//        btnAulas.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(Home.this, ListaAulas.class);
+//                intent.putExtra("id_modulo", idModulo);
+//                startActivity(intent);
+//            }
+//        });
 
-        btnRecomendacoes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Home.this, EscolherRecomendacoes.class);
-                startActivity(intent);
-            }
-        });
+//        btnRecomendacoes.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(Home.this, EscolherRecomendacoes.class);
+//                startActivity(intent);
+//            }
+//        });
 
         // Percorre o banco selecionando o nome e os horarios das aulas com base no dia da semana
         // Atualização agora faz o SELECT especificando de qual tabela é a. da tabela de aulas e p. da tabela de professores
@@ -88,8 +121,8 @@ public class Home extends AppCompatActivity {
                 "SELECT a.nomeAula, a.horaInicio, a.horaFim, a.lab, p.nomeProf" +
                         " FROM aulas a " +
                         "JOIN professores p ON a.id_professor = p.id_professor" +
-                        " WHERE a.diaSemana = ?",
-                new String[]{String.valueOf(diaSemana)}
+                        " WHERE a.diaSemana = ? AND a.id_modulo = ?",
+                new String[]{String.valueOf(diaSemana), String.valueOf(idModulo)}
         );
 
 // Limpa o container antes de adicionar
@@ -108,9 +141,9 @@ public class Home extends AppCompatActivity {
 
                 // Cria TextView para cada aula
                 TextView tvAula = new TextView(this);
-                tvAula.setText(aula + " - " + inicio + " até " + fim + "\nProfessor(a): " + professor + "\nLab: " + lab); // Define o texto
-                tvAula.setTextSize(18); // Tamanho da fonte do texto
-                tvAula.setPadding(16,16,16,16); // Espaçamento interno
+                tvAula.setText(idModulo + "°DS:\n" + aula + " - " + inicio + " até " + fim + "\nProfessor(a): " + professor + "\nLab: " + lab); // Define o texto
+                tvAula.setTextSize(16); // Tamanho da fonte do texto
+                tvAula.setPadding(10,10,10,10); // Espaçamento interno
                 tvAula.setBackgroundResource(android.R.drawable.dialog_holo_light_frame); // Uma borda simples
 
                 // Adiciona o TextView no container

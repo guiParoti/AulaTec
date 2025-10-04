@@ -33,21 +33,19 @@ public class TelaMod extends AppCompatActivity {
         priDs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AlertDialog.Builder(TelaMod.this)
-                        .setTitle("Alerta")
-                        .setMessage("Indisponível no momento!")
-                        .show();
-
+                Intent intent = new Intent(TelaMod.this, Home.class);
+                intent.putExtra("id_modulo", 3  );
+                startActivity(intent);
             }
         });
 
         segDs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AlertDialog.Builder(TelaMod.this)
-                        .setTitle("Alerta")
-                        .setMessage("Indisponível no momento!")
-                        .show();
+                Intent intent = new Intent(TelaMod.this, Home.class);
+                intent.putExtra("id_modulo", 2);
+                startActivity(intent);
+
             }
         });
 
@@ -55,6 +53,7 @@ public class TelaMod extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(TelaMod.this, Home.class);
+                intent.putExtra("id_modulo", 3);
                 startActivity(intent);
             }
         });
