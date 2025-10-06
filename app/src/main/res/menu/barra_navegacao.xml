@@ -7,14 +7,14 @@
         android:title="Modulos" />
 
     <item
-        android:id="@+id/nav_home"
-        android:icon="@drawable/ic_home"
-        android:title="Home" />
-
-    <item
         android:id="@+id/nav_aulas"
         android:icon="@drawable/ic_aulas"
         android:title="Aulas" />
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home"
+        android:title="Home" />
 
     <item
         android:id="@+id/nav_emails"

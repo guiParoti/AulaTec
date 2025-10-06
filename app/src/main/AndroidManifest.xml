@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AulaTec">
         <activity
+            android:name=".DetalhesProf"
+            android:exported="false" />
+        <activity
             android:name=".FragmentAulas"
             android:exported="false" />
         <activity

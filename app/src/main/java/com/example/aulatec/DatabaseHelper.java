@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String nomeBanco = "etec.db"; // Nome do banco de dados
-    private static final int versaoBanco = 21; // Versão do Banco (usado pra atualizar a tabela)
+    private static final int versaoBanco = 22; // Versão do Banco (usado pra atualizar a tabela)
 
 
 

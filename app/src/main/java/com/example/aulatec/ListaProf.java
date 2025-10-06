@@ -25,8 +25,8 @@ public class ListaProf extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_lista_prof);
-        exibirLista();
         int idModulo = getIntent().getIntExtra("id_modulo", 3);
+        exibirLista(idModulo);
         BottomNavigationView barraNavegacao = findViewById(R.id.bottomNavigationView);
         barraNavegacao.setSelectedItemId(R.id.nav_emails);
 
@@ -35,24 +35,28 @@ public class ListaProf extends AppCompatActivity {
             if (id == R.id.nav_emails) {
                 // já está nos contatos dos professores, não faz nada
                 return true;
+
             } else if (id == R.id.nav_home) {
                 Intent intent = new Intent(ListaProf.this, Home.class);
                 intent.putExtra("id_modulo", idModulo);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
+
             }else if(id == R.id.nav_aulas){
                 Intent intent = new Intent(ListaProf.this, ListaAulas.class);
                 intent.putExtra("id_modulo", idModulo);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
+
             }else if(id == R.id.nav_recomendacoes){
                 Intent intent = new Intent(ListaProf.this, EscolherRecomendacoes.class);
                 intent.putExtra("id_modulo", idModulo);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
+
             }else if(id == R.id.nav_modulo){
                 Intent intent = new Intent(ListaProf.this, TelaMod.class);
                 startActivity(intent);
@@ -64,7 +68,7 @@ public class ListaProf extends AppCompatActivity {
 
     }
 
-    public void exibirLista(){
+    public void exibirLista(int idModulo){
         try{
             DatabaseHelper bancoHelper = new DatabaseHelper(this);
             SQLiteDatabase bancoDados = bancoHelper.getReadableDatabase();
@@ -73,12 +77,17 @@ public class ListaProf extends AppCompatActivity {
                     "FROM professores", null);
 
             ArrayList<String> lista = new ArrayList<>();
+            ArrayList<String> nomes = new ArrayList<>();
+            ArrayList<String> emails = new ArrayList<>();
 
             if (cursor.moveToFirst()){
                 do{
                     String nomeProf = cursor.getString(0);
                     String emailProf = cursor.getString(1);
                     lista.add("\nProfessor(a): " + nomeProf + "\nEmail: " + emailProf + "\n");
+                    nomes.add(nomeProf);
+                    emails.add((emailProf));
+
                 }while (cursor.moveToNext());
             }
 
@@ -90,6 +99,19 @@ public class ListaProf extends AppCompatActivity {
                     this, android.R.layout.simple_list_item_1, lista
 
             ); listaProf.setAdapter(adapter);
+
+
+            listaProf.setOnItemClickListener((parent, view, position, id) -> {
+                String nomeSelecionado = nomes.get(position);
+                String emailSelecionado = emails.get(position);
+
+
+                Intent intent = new Intent(ListaProf.this, DetalhesProf.class);
+                intent.putExtra("nomeProf", nomeSelecionado);
+                intent.putExtra("emailProf", emailSelecionado);
+                intent.putExtra("id_modulo", idModulo);
+                startActivity(intent);
+            });
         }catch (Exception a){
             a.printStackTrace();
         }

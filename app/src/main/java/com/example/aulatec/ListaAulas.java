@@ -36,24 +36,28 @@ public class ListaAulas extends AppCompatActivity {
             if (id == R.id.nav_aulas) {
                 // já está nas aulas, não faz nada
                 return true;
+
             } else if (id == R.id.nav_home) {
                 Intent intent = new Intent(ListaAulas.this, Home.class);
                 intent.putExtra("id_modulo", idModulo);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
+
             }else if(id == R.id.nav_emails){
                 Intent intent = new Intent(ListaAulas.this, ListaProf.class);
                 intent.putExtra("id_modulo", idModulo);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
+
             }else if(id == R.id.nav_recomendacoes){
                 Intent intent = new Intent(ListaAulas.this, EscolherRecomendacoes.class);
                 intent.putExtra("id_modulo", idModulo);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
+
             }else if(id == R.id.nav_modulo){
                 Intent intent = new Intent(ListaAulas.this, TelaMod.class);
                 startActivity(intent);

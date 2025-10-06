@@ -38,24 +38,28 @@ public class EscolherRecomendacoes extends AppCompatActivity {
             if (id == R.id.nav_recomendacoes) {
                 // já está nas recomendações dos professores, não faz nada
                 return true;
+
             } else if (id == R.id.nav_home) {
                 Intent intent = new Intent(EscolherRecomendacoes.this, Home.class);
                 intent.putExtra("id_modulo", idModulo);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
+
             }else if(id == R.id.nav_aulas){
                 Intent intent = new Intent(EscolherRecomendacoes.this, ListaAulas.class);
                 intent.putExtra("id_modulo", idModulo);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
+
             }else if(id == R.id.nav_emails){
                 Intent intent = new Intent(EscolherRecomendacoes.this, ListaProf.class);
                 intent.putExtra("id_modulo", idModulo);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
+
             }else if(id == R.id.nav_modulo){
                 Intent intent = new Intent(EscolherRecomendacoes.this, TelaMod.class);
                 startActivity(intent);

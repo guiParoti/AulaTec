@@ -47,24 +47,28 @@ public class Home extends AppCompatActivity {
                 if (id == R.id.nav_home) {
                     // já está no Home, não faz nada
                     return true;
+
                 } else if (id == R.id.nav_aulas) {
                     Intent intent = new Intent(Home.this, ListaAulas.class);
                     intent.putExtra("id_modulo", idModulo);
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                     return true;
+
                 }else if(id == R.id.nav_emails){
                     Intent intent = new Intent(Home.this, ListaProf.class);
                     intent.putExtra("id_modulo", idModulo);
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                     return true;
+
                 }else if(id == R.id.nav_recomendacoes){
                     Intent intent = new Intent(Home.this, EscolherRecomendacoes.class);
                     intent.putExtra("id_modulo", idModulo);
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                     return true;
+
                 }else if(id == R.id.nav_modulo){
                     Intent intent = new Intent(Home.this, TelaMod.class);
                     startActivity(intent);
@@ -115,13 +119,13 @@ public class Home extends AppCompatActivity {
 //            }
 //        });
 
-        // Percorre o banco selecionando o nome e os horarios das aulas com base no dia da semana
-        // Atualização agora faz o SELECT especificando de qual tabela é a. da tabela de aulas e p. da tabela de professores
+        // Percorre o banco selecionando o nome e os horarios das aulas com base no dia da semana e modulo
+        // Atualização agora faz o SELECT especificando de qual tabela é, a. da tabela de aulas e p. da tabela de professores
         Cursor cursor = bd.rawQuery(
-                "SELECT a.nomeAula, a.horaInicio, a.horaFim, a.lab, p.nomeProf" +
-                        " FROM aulas a " +
-                        "JOIN professores p ON a.id_professor = p.id_professor" +
-                        " WHERE a.diaSemana = ? AND a.id_modulo = ?",
+                "SELECT a.nomeAula, a.horaInicio, a.horaFim, a.lab, p.nomeProf " +
+                        "FROM aulas a " +
+                        "JOIN professores p ON a.id_professor = p.id_professor " +
+                        "WHERE a.diaSemana = ? AND a.id_modulo = ?",
                 new String[]{String.valueOf(diaSemana), String.valueOf(idModulo)}
         );
 
@@ -142,8 +146,8 @@ public class Home extends AppCompatActivity {
                 // Cria TextView para cada aula
                 TextView tvAula = new TextView(this);
                 tvAula.setText(idModulo + "°DS:\n" + aula + " - " + inicio + " até " + fim + "\nProfessor(a): " + professor + "\nLab: " + lab); // Define o texto
-                tvAula.setTextSize(16); // Tamanho da fonte do texto
-                tvAula.setPadding(10,10,10,10); // Espaçamento interno
+                tvAula.setTextSize(16); // Tamanho da fonte do texto;
+                tvAula.setPadding(16,16,16,16); // Espaçamento interno
                 tvAula.setBackgroundResource(android.R.drawable.dialog_holo_light_frame); // Uma borda simples
 
                 // Adiciona o TextView no container
@@ -154,7 +158,7 @@ public class Home extends AppCompatActivity {
             // Se não tiver aula no dia
             TextView tvAula = new TextView(this);
             tvAula.setText("Hoje não tem aula\nAproveite seu final de semana!");
-            tvAula.setTextSize(18);
+            tvAula.setTextSize(16);
             tvAula.setPadding(16,16,16,16);
             tvAula.setBackgroundResource(android.R.drawable.dialog_holo_light_frame); // Uma borda simples
             containerAulas.addView(tvAula);
