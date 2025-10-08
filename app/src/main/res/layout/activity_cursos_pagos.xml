@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    tools:context=".CursosPagos">
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <ScrollView
+        android:id="@+id/scrollConteudo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:divider="?android:attr/dividerVertical"
+            android:showDividers="middle">
+
+            <!-- Curso em Vídeo -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/capaCurso"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/udemy_logo" />
+
+                    <TextView
+                        android:id="@+id/txtNomeCurso"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:text="Udemy"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtDescricaoCurso"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="4dp"
+                        android:text="A Udemy é uma das maiores plataformas de ensino online do mundo, com milhares de cursos voltados para o desenvolvimento profissional e pessoal. Entre suas áreas mais populares, se destacam os cursos de programação, tecnologia da informação e desenvolvimento de software, ideais para quem deseja entrar ou se aperfeiçoar na área de T.I.  Na Udemy, é possível encontrar aulas ministradas por especialistas e profissionais do mercado, com conteúdos atualizados, linguagem acessível e exercícios práticos. A plataforma oferece cursos sobre Python, Java, C#, JavaScript, HTML, CSS, SQL, React, Node.js, Segurança da Informação, Inteligência Artificial, e muito mais — abrangendo desde o nível iniciante até o avançado.  Um dos grandes diferenciais é que, ao comprar um curso, o aluno tem acesso vitalício ao conteúdo, podendo assistir quando e quantas vezes quiser. A plataforma também permite baixar as aulas para estudo offline e oferece certificado de conclusão gratuito para a maioria dos cursos.  Com preços acessíveis e promoções frequentes, a Udemy é uma excelente opção para quem busca se capacitar na área de tecnologia, aprender novas linguagens de programação ou atualizar-se com as tendências do mercado de T.I."
+                        android:textColor="#333"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/txtLink1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autoLink="web"
+                        android:paddingTop="6dp"
+                        android:text="Acesse: www.udemy.com"
+                        android:textColor="#1E88E5" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- TIC em Trilhas -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/capaCurso2"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/alura" />
+
+                    <TextView
+                        android:id="@+id/txtNomeCurso2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:text="Alura"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtDescricaoCurso2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="4dp"
+                        android:text="A Alura é uma das principais plataformas brasileiras de educação online em tecnologia, voltada para quem deseja aprender programação, desenvolvimento de software e aprimorar habilidades na área de T.I..  Com uma metodologia prática e moderna, a Alura oferece centenas de cursos organizados em formações completas, permitindo que o aluno siga trilhas de aprendizado estruturadas, do nível básico ao avançado.  Os conteúdos abrangem diversas áreas, como desenvolvimento web, mobile, ciência de dados, inteligência artificial, DevOps, UX/UI Design, segurança da informação e gestão de projetos. As aulas são ministradas por profissionais experientes do mercado e incluem exercícios, projetos práticos e desafios reais para fixar o aprendizado.  Além disso, os alunos têm acesso a uma comunidade ativa, certificados digitais e atualizações frequentes, acompanhando as tendências mais recentes do setor de tecnologia.  A Alura é ideal para estudantes e profissionais que buscam crescimento contínuo na área de T.I., com ensino em português, conteúdo de qualidade e uma experiência de aprendizado completa e envolvente."
+                        android:textColor="#333"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/txtLink2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autoLink="web"
+                        android:paddingTop="6dp"
+                        android:text="Acesse: www.alura.com.br"
+                        android:textColor="#1E88E5" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- BARRA DE NAVEGAÇÃO -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/barra_navegacao" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

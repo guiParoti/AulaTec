@@ -25,8 +25,8 @@ public class EscolherRecomendacoes extends AppCompatActivity {
         int idModulo = getIntent().getIntExtra("id_modulo", 3);
 
 
-        Button btnCursos = findViewById(R.id.btnRCursos);
-        Button btnJogos = findViewById(R.id.btnRJogos);
+        Button btnCursos = findViewById(R.id.btnCGratis);
+        Button btnJogos = findViewById(R.id.btnCPagos);
         Button btnFilmes = findViewById(R.id.btnRFilmes);
         Button btnApps = findViewById(R.id.btnRApps);
 

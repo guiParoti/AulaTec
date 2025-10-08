@@ -132,7 +132,7 @@ public class Home extends AppCompatActivity {
 // Limpa o container antes de adicionar
         containerAulas.removeAllViews();
 
-        // Verefica se o cursor achou alguma coisa
+        // Verifica se o cursor achou alguma coisa
         if(cursor.moveToFirst()){
             do{
                 // Pega os dados da aula do cursor

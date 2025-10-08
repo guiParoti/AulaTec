@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -8,22 +9,9 @@
     android:background="#FAF6F6"
     tools:context=".TelaMod">
 
-    <!-- Título -->
-
-    <!-- Bloco de botões centralizado -->
-
-    <ImageView
-        android:id="@+id/iconNsa2"
-        android:layout_width="75dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/linkNsa"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/linkGuilherme"
-        app:srcCompat="@drawable/linknsa" />
-
+    <!-- ========================= -->
+    <!--       TÍTULO DA TELA      -->
+    <!-- ========================= -->
     <TextView
         android:id="@+id/txtTitulo"
         android:layout_width="wrap_content"
@@ -34,23 +22,25 @@
         android:textColor="#070707"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- ========================= -->
+    <!--   BLOCO DE BOTÕES (DS)    -->
+    <!-- ========================= -->
     <LinearLayout
         android:id="@+id/containerBotoes"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
-        android:gravity="center"
         android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/txtTitulo"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitulo"
-        app:layout_constraintVertical_bias="0.348">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.35">
 
         <Button
             android:id="@+id/btn1mod"
@@ -59,6 +49,7 @@
             android:backgroundTint="#0B0B0B"
             android:text="1º DS"
             android:textAllCaps="false"
+            android:textColor="#FFFFFF"
             android:textStyle="bold" />
 
         <Button
@@ -69,6 +60,7 @@
             android:backgroundTint="#0B0B0B"
             android:text="2º DS"
             android:textAllCaps="false"
+            android:textColor="#FFFFFF"
             android:textStyle="bold" />
 
         <Button
@@ -79,7 +71,27 @@
             android:backgroundTint="#0B0B0B"
             android:text="3º DS"
             android:textAllCaps="false"
+            android:textColor="#FFFFFF"
             android:textStyle="bold" />
     </LinearLayout>
+
+    <!-- ========================= -->
+    <!--       ÍCONE DECORATIVO    -->
+    <!-- ========================= -->
+    <ImageView
+        android:id="@+id/iconNsa2"
+        android:layout_width="75dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="40dp"
+        app:srcCompat="@drawable/linknsa"
+        app:layout_constraintStart_toEndOf="@+id/linkGuilherme"
+        app:layout_constraintEnd_toStartOf="@+id/linkNsa"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0" />
+
+    <!-- ========================= -->
+    <!--     BARRA DE NAVEGAÇÃO    -->
+    <!-- ========================= -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
