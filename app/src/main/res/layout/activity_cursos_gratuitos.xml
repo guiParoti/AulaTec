@@ -41,14 +41,14 @@
                     android:padding="12dp">
 
                     <ImageView
-                        android:id="@+id/capaCurso"
+                        android:id="@+id/capaJogo"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
                         app:srcCompat="@drawable/cursoemvideo" />
 
                     <TextView
-                        android:id="@+id/txtNomeCurso"
+                        android:id="@+id/txtNomeJogo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Curso em Vídeo"
@@ -57,7 +57,7 @@
                         android:paddingTop="8dp" />
 
                     <TextView
-                        android:id="@+id/txtDescricaoCurso"
+                        android:id="@+id/txtDescricaoJogo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="4dp"
@@ -90,14 +90,14 @@
                     android:padding="12dp">
 
                     <ImageView
-                        android:id="@+id/capaCurso2"
+                        android:id="@+id/capaJogo2"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
                         app:srcCompat="@drawable/tic_em_trilhas2" />
 
                     <TextView
-                        android:id="@+id/txtNomeCurso2"
+                        android:id="@+id/txtNomeJogo2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="TIC em Trilhas"
@@ -106,7 +106,7 @@
                         android:paddingTop="8dp" />
 
                     <TextView
-                        android:id="@+id/txtDescricaoCurso2"
+                        android:id="@+id/txtDescricaoJogo2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="4dp"

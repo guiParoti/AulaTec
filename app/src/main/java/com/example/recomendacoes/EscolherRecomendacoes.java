@@ -73,6 +73,16 @@ public class EscolherRecomendacoes extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(EscolherRecomendacoes.this, TipoCurso.class);
+                intent.putExtra("id_modulo", idModulo);
+                startActivity(intent);
+            }
+        });
+
+        btnJogos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EscolherRecomendacoes.this, RJogos.class);
+                intent.putExtra("id_modulo", idModulo);
                 startActivity(intent);
             }
         });
