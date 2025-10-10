@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F5F5"
-    tools:context="com.example.recomendacoes.RFilmes">
+    tools:context="com.example.recomendacoes.RApps">
 
     <!-- CONTEÚDO PRINCIPAL -->
     <ScrollView
@@ -41,27 +41,27 @@
                     android:padding="12dp">
 
                     <ImageView
-                        android:id="@+id/capaFilme"
+                        android:id="@+id/capaApp"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/a_rede_social" />
+                        app:srcCompat="@drawable/mimo" />
 
                     <TextView
-                        android:id="@+id/txtNomeFilme"
+                        android:id="@+id/txtNomeApp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="8dp"
-                        android:text="A Rede Social"
+                        android:text="MIMO"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/txtDescricaoFilme"
+                        android:id="@+id/txtDescricaoApp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="4dp"
-                        android:text="Lançado em 2010 e dirigido por David Fincher, A Rede Social narra a trajetória de Mark Zuckerberg, um estudante de Harvard que, a partir de uma ideia simples e algumas linhas de código, cria o Facebook — uma rede social que rapidamente se torna um fenômeno mundial. A história mostra o crescimento vertiginoso da plataforma e os conflitos que surgem à medida que o sucesso atrai reconhecimento, inveja e batalhas legais entre antigos amigos e parceiros.  O filme destaca temas como ambição, genialidade e as consequências do avanço tecnológico, apresentando de forma envolvente os bastidores da criação de uma das maiores empresas da era digital. Para quem é da área de programação ou tecnologia da informação, A Rede Social é especialmente interessante por mostrar o lado técnico e empreendedor do desenvolvimento de software, a importância da inovação e como decisões tomadas no código e na gestão podem impactar o mundo inteiro."
+                        android:text="Mimo é um aplicativo educativo voltado para quem deseja aprender programação de forma prática e acessível. A plataforma oferece cursos interativos em diversas linguagens, como Python, JavaScript, HTML, CSS e SQL, além de tópicos sobre desenvolvimento de sites, aplicativos e fundamentos da ciência da computação.  Com lições curtas, desafios de código e um sistema de progressão semelhante a jogos, o Mimo torna o aprendizado dinâmico e motivador, mesmo para iniciantes. É uma excelente opção para quem está começando na área de programação ou tecnologia da informação, pois permite praticar diretamente no celular e desenvolver habilidades essenciais para o mercado digital atual."
                         android:textColor="#333"
                         android:textSize="14sp" />
 
@@ -82,14 +82,14 @@
                     android:padding="12dp">
 
                     <ImageView
-                        android:id="@+id/capaFilme2"
+                        android:id="@+id/capaApp2"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
                         app:srcCompat="@drawable/o_jogo_da_imitacao" />
 
                     <TextView
-                        android:id="@+id/txtNomeFilme2"
+                        android:id="@+id/txtNomeApp2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="8dp"
@@ -98,7 +98,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/txtDescricaoFilme2"
+                        android:id="@+id/txtDescricaoApp2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="4dp"

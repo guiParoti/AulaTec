@@ -87,6 +87,24 @@ public class EscolherRecomendacoes extends AppCompatActivity {
             }
         });
 
+        btnFilmes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EscolherRecomendacoes.this, RFilmes.class);
+                intent.putExtra("id_modulo", idModulo);
+                startActivity(intent);
+            }
+        });
+
+        btnApps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EscolherRecomendacoes.this, RApps.class);
+                intent.putExtra("id_modulo", idModulo);
+                startActivity(intent);
+            }
+        });
+
 
     }
 }
