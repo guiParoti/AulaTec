@@ -86,14 +86,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/o_jogo_da_imitacao" />
+                        app:srcCompat="@drawable/dcoder" />
 
                     <TextView
                         android:id="@+id/txtNomeApp2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="8dp"
-                        android:text="O Jogo da IMITAÇÃO"
+                        android:text="Dcoder"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -102,7 +102,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="4dp"
-                        android:text="Lançado em 2014 e dirigido por Morten Tyldum, O Jogo da Imitação é baseado na história real de Alan Turing, o brilhante matemático e criptógrafo britânico que liderou uma equipe de especialistas durante a Segunda Guerra Mundial para decifrar o código Enigma, usado pela Alemanha nazista. A trama mostra o esforço incansável de Turing em construir uma máquina capaz de processar informações em alta velocidade — um dos primeiros passos rumo ao que conhecemos hoje como computação moderna.  O filme combina drama histórico e genialidade científica, explorando tanto o impacto das descobertas de Turing quanto os desafios pessoais e sociais que ele enfrentou. Para quem é da área de programação ou tecnologia da informação, O Jogo da Imitação é especialmente fascinante, pois mostra as origens da lógica computacional, o raciocínio por trás dos algoritmos e o poder da mente humana em transformar códigos em soluções que mudam o mundo."
+                        android:text="Dcoder é um aplicativo de desenvolvimento e aprendizado de programação que transforma seu celular em um verdadeiro ambiente de codificação. Ele permite escrever, compilar e executar códigos em mais de 50 linguagens de programação, incluindo Python, C++, Java, JavaScript, PHP e muitas outras.  Com uma interface limpa e intuitiva, o Dcoder é ideal tanto para estudantes quanto para profissionais que desejam praticar lógica, resolver desafios de programação ou testar pequenos trechos de código em qualquer lugar. O app também oferece recursos como destaque de sintaxe, suporte a múltiplos temas, terminal embutido e integração com plataformas de aprendizado."
                         android:textColor="#333"
                         android:textSize="14sp" />
 

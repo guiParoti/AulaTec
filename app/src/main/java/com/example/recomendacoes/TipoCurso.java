@@ -46,6 +46,7 @@ public class TipoCurso extends AppCompatActivity {
         });
 
         BottomNavigationView barraNavegacao = findViewById(R.id.bottom_navigation);
+        barraNavegacao.setSelectedItemId(R.id.nav_recomendacoes);
 
 
         barraNavegacao.setOnItemSelectedListener( item -> {
@@ -54,26 +55,31 @@ public class TipoCurso extends AppCompatActivity {
                 Intent intent = new Intent(TipoCurso.this, TelaMod.class);
                 intent.putExtra("id_modulo", idModulo);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
                 return true;
             }else if(id == R.id.nav_home){
                 Intent intent = new Intent(TipoCurso.this, Home.class);
                 intent.putExtra("id_modulo", idModulo);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
                 return true;
             }else if(id == R.id.nav_emails){
                 Intent intent = new Intent(TipoCurso.this, ListaProf.class);
                 intent.putExtra("id_modulo", idModulo);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
                 return true;
             }else if(id == R.id.nav_aulas){
                 Intent intent = new Intent(TipoCurso.this, ListaAulas.class);
                 intent.putExtra("id_modulo", idModulo);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
                 return true;
             }else if(id == R.id.nav_recomendacoes){
                 Intent intent = new Intent(TipoCurso.this, EscolherRecomendacoes.class);
                 intent.putExtra("id_modulo", idModulo);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
                 return true;
             }
 
