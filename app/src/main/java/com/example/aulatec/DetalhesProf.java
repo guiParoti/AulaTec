@@ -28,7 +28,10 @@ public class DetalhesProf extends AppCompatActivity {
 
         String nomeProf = getIntent().getStringExtra("nomeProf");
         String emailProf = getIntent().getStringExtra("emailProf");
+
         int idModulo = getIntent().getIntExtra("id_modulo", 3);
+        String turma =  getIntent().getStringExtra("turma");
+
         BottomNavigationView barraNavegacao = findViewById(R.id.bottom_navigation);
 
         TextView txtNome = findViewById(R.id.txtNome);
@@ -47,21 +50,25 @@ public class DetalhesProf extends AppCompatActivity {
             if(id == R.id.nav_aulas){
                 Intent intent = new Intent(DetalhesProf.this, ListaAulas.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 return true;
             }else if(id == R.id.nav_recomendacoes){
                 Intent intent = new Intent(DetalhesProf.this, EscolherRecomendacoes.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 return true;
             }else if(id == R.id.nav_home) {
                 Intent intent = new Intent(DetalhesProf.this, Home.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 return true;
             }else if(id == R.id.nav_emails) {
                 Intent intent = new Intent(DetalhesProf.this, ListaProf.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 return true;
             }else if(id == R.id.nav_modulo) {
@@ -76,8 +83,9 @@ public class DetalhesProf extends AppCompatActivity {
         Cursor cursor = db.rawQuery(
                 "SELECT a.nomeAula, a.diaSemana from aulas a " +
                         "JOIN professores p ON a.id_professor = p.id_professor " +
-                        "WHERE p.nomeProf = ? AND a.id_modulo = ?",
-                new String[]{nomeProf, String.valueOf(idModulo)}
+                        "JOIN modulos m ON a.id_modulo = m.id_modulo " +
+                        "WHERE p.nomeProf = ? AND a.id_modulo = ? AND m.turma = ?",
+                new String[]{nomeProf, String.valueOf(idModulo), turma}
         );
 
         if(cursor.moveToFirst()){

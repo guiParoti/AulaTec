@@ -26,7 +26,9 @@ public class ListaProf extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_lista_prof);
         int idModulo = getIntent().getIntExtra("id_modulo", 3);
-        exibirLista(idModulo);
+        String turma = getIntent().getStringExtra("turma");
+
+        exibirLista(idModulo, turma);
         BottomNavigationView barraNavegacao = findViewById(R.id.bottomNavigationView);
         barraNavegacao.setSelectedItemId(R.id.nav_emails);
 
@@ -39,6 +41,7 @@ public class ListaProf extends AppCompatActivity {
             } else if (id == R.id.nav_home) {
                 Intent intent = new Intent(ListaProf.this, Home.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
@@ -46,6 +49,7 @@ public class ListaProf extends AppCompatActivity {
             }else if(id == R.id.nav_aulas){
                 Intent intent = new Intent(ListaProf.this, ListaAulas.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
@@ -53,6 +57,7 @@ public class ListaProf extends AppCompatActivity {
             }else if(id == R.id.nav_recomendacoes){
                 Intent intent = new Intent(ListaProf.this, EscolherRecomendacoes.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
@@ -68,7 +73,7 @@ public class ListaProf extends AppCompatActivity {
 
     }
 
-    public void exibirLista(int idModulo){
+    public void exibirLista(int idModulo, String turma){
         try{
             DatabaseHelper bancoHelper = new DatabaseHelper(this);
             SQLiteDatabase bancoDados = bancoHelper.getReadableDatabase();
@@ -110,6 +115,7 @@ public class ListaProf extends AppCompatActivity {
                 intent.putExtra("nomeProf", nomeSelecionado);
                 intent.putExtra("emailProf", emailSelecionado);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
             });
         }catch (Exception a){

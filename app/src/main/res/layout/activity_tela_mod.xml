@@ -12,23 +12,25 @@
     <!-- ========================= -->
     <!--       TÍTULO DA TELA      -->
     <!-- ========================= -->
+
+    <!-- ========================= -->
+    <!--   BLOCO DE BOTÕES (DS)    -->
+    <!-- ========================= -->
+
     <TextView
         android:id="@+id/txtTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="60dp"
         android:text="Selecione seu módulo"
         android:textAllCaps="true"
         android:textColor="#070707"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- ========================= -->
-    <!--   BLOCO DE BOTÕES (DS)    -->
-    <!-- ========================= -->
     <LinearLayout
         android:id="@+id/containerBotoes"
         android:layout_width="0dp"
@@ -43,25 +45,48 @@
         app:layout_constraintVertical_bias="0.35">
 
         <Button
-            android:id="@+id/btn1mod"
+            android:id="@+id/btn1modA"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:backgroundTint="#0B0B0B"
-            android:text="1º DS"
+            android:text="1º DS A"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btn2mod"
+            android:id="@+id/btn1modB"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:backgroundTint="#0B0B0B"
+            android:text="1º DS B"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+
+        <Button
+            android:id="@+id/btn2modA"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="16dp"
             android:backgroundTint="#0B0B0B"
-            android:text="2º DS"
+            android:text="2º DS A"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textStyle="bold" />
+
+
+        <Button
+            android:id="@+id/btn2modB"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:backgroundTint="#0B0B0B"
+            android:text="2º DS B"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
 
         <Button
             android:id="@+id/btn3mod"

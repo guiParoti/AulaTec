@@ -20,6 +20,8 @@ import java.util.ArrayList;
 
 public class ListaAulas extends AppCompatActivity {
     String diaSemana;
+    String modulo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,8 @@ public class ListaAulas extends AppCompatActivity {
         setContentView(R.layout.activity_lista_aulas);
 
         int idModulo = getIntent().getIntExtra("id_modulo", 3);
+        String turma =  getIntent().getStringExtra("turma");
+
         BottomNavigationView barraNavegacao = findViewById(R.id.bottom_navigation);
         barraNavegacao.setSelectedItemId(R.id.nav_aulas);
 
@@ -40,6 +44,7 @@ public class ListaAulas extends AppCompatActivity {
             } else if (id == R.id.nav_home) {
                 Intent intent = new Intent(ListaAulas.this, Home.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
@@ -47,6 +52,7 @@ public class ListaAulas extends AppCompatActivity {
             }else if(id == R.id.nav_emails){
                 Intent intent = new Intent(ListaAulas.this, ListaProf.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
@@ -54,6 +60,7 @@ public class ListaAulas extends AppCompatActivity {
             }else if(id == R.id.nav_recomendacoes){
                 Intent intent = new Intent(ListaAulas.this, EscolherRecomendacoes.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
@@ -67,11 +74,11 @@ public class ListaAulas extends AppCompatActivity {
             return false;
         });
 
-        exibirAulas(idModulo);
+        exibirAulas(idModulo, turma);
 
 
     }
-    public void exibirAulas(int idModulo){
+    public void exibirAulas(int idModulo, String turma){
         try{
             DatabaseHelper bancoHelper = new DatabaseHelper(this);
             SQLiteDatabase bancoDados = bancoHelper.getReadableDatabase();
@@ -82,8 +89,10 @@ public class ListaAulas extends AppCompatActivity {
                     " p.nomeProf " +
                     "FROM aulas a " +
                     "INNER JOIN professores p ON a.id_professor = p.id_professor " +
-                    "WHERE a.id_modulo = ? " +
-                    "ORDER BY a.diaSemana", new String[]{String.valueOf(idModulo)});
+                    "JOIN modulos m ON a.id_modulo = m.id_modulo " +
+                    "WHERE a.id_modulo = ? AND m.turma  = ? " +
+                    "ORDER BY a.diaSemana",
+                        new String[]{String.valueOf(idModulo), turma});
 
             if(cursor.moveToFirst()){
                 do{
@@ -105,12 +114,32 @@ public class ListaAulas extends AppCompatActivity {
                             diaSemana = "Sexta-feira";
                             break;
                     }
+
+                    switch (idModulo){
+                        case 1:
+                            modulo = "1°DS A";
+                            break;
+                        case 2:
+                            modulo = "1°DS B";
+                            break;
+                        case 3:
+                            modulo = "2°DS A";
+                            break;
+                        case 4:
+                            modulo = "2°DS B";
+                            break;
+                        case 5:
+                            modulo = "3°DS";
+                            break;
+
+                    }
+
                     String nomeAula = cursor.getString(1);
                     String horaInicio = cursor.getString(2);
                     String horaFim = cursor.getString(3);
                     int lab = cursor.getInt(4);
                     String nomeProfessor = cursor.getString(5);
-                    lista.add("\n"+ diaSemana + "\n" + idModulo + "°DS\n" + nomeAula + "\n" + horaInicio + " - " + horaFim + "\nProfessor(a): "
+                    lista.add("\n"+ diaSemana + "\n" + modulo + "\n" + nomeAula + "\n" + horaInicio + " - " + horaFim + "\nProfessor(a): "
                             + nomeProfessor + "\nLab: " + lab + "\n");
                 }while (cursor.moveToNext());
             }

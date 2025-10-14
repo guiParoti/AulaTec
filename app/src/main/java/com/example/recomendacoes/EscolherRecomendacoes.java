@@ -23,6 +23,7 @@ public class EscolherRecomendacoes extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_escolher_recomendacoes);
         int idModulo = getIntent().getIntExtra("id_modulo", 3);
+        String turma =  getIntent().getStringExtra("turma");
 
 
         Button btnCursos = findViewById(R.id.btnCGratis);
@@ -42,6 +43,7 @@ public class EscolherRecomendacoes extends AppCompatActivity {
             } else if (id == R.id.nav_home) {
                 Intent intent = new Intent(EscolherRecomendacoes.this, Home.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
@@ -49,6 +51,7 @@ public class EscolherRecomendacoes extends AppCompatActivity {
             }else if(id == R.id.nav_aulas){
                 Intent intent = new Intent(EscolherRecomendacoes.this, ListaAulas.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
@@ -56,6 +59,7 @@ public class EscolherRecomendacoes extends AppCompatActivity {
             }else if(id == R.id.nav_emails){
                 Intent intent = new Intent(EscolherRecomendacoes.this, ListaProf.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;

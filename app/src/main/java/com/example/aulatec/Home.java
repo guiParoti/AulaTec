@@ -20,6 +20,8 @@ import java.util.Calendar;
 
 public class Home extends AppCompatActivity {
 
+    String modulo;
+
 
 
     @Override
@@ -27,8 +29,8 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
-
-        int idModulo = getIntent().getIntExtra("id_modulo", 3);
+        int idModulo = getIntent().getIntExtra("id_modulo", 5);
+        String turma = getIntent().getStringExtra("turma");
 
         // Pega o container onde vamos adicionar as aulas
         LinearLayout containerAulas = findViewById(R.id.containerAulas);
@@ -51,6 +53,7 @@ public class Home extends AppCompatActivity {
                 } else if (id == R.id.nav_aulas) {
                     Intent intent = new Intent(Home.this, ListaAulas.class);
                     intent.putExtra("id_modulo", idModulo);
+                    intent.putExtra("turma", turma);
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                     return true;
@@ -58,6 +61,7 @@ public class Home extends AppCompatActivity {
                 }else if(id == R.id.nav_emails){
                     Intent intent = new Intent(Home.this, ListaProf.class);
                     intent.putExtra("id_modulo", idModulo);
+                    intent.putExtra("turma", turma);
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                     return true;
@@ -65,6 +69,7 @@ public class Home extends AppCompatActivity {
                 }else if(id == R.id.nav_recomendacoes){
                     Intent intent = new Intent(Home.this, EscolherRecomendacoes.class);
                     intent.putExtra("id_modulo", idModulo);
+                    intent.putExtra("turma", turma);
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                     return true;
@@ -125,8 +130,9 @@ public class Home extends AppCompatActivity {
                 "SELECT a.nomeAula, a.horaInicio, a.horaFim, a.lab, p.nomeProf " +
                         "FROM aulas a " +
                         "JOIN professores p ON a.id_professor = p.id_professor " +
-                        "WHERE a.diaSemana = ? AND a.id_modulo = ?",
-                new String[]{String.valueOf(diaSemana), String.valueOf(idModulo)}
+                        "JOIN modulos m ON a.id_modulo = m.id_modulo " +
+                        "WHERE a.diaSemana = ? AND a.id_modulo = ? AND UPPER(m.turma) = UPPER(?)",
+                new String[]{String.valueOf(diaSemana), String.valueOf(idModulo), turma}
         );
 
 // Limpa o container antes de adicionar
@@ -135,17 +141,37 @@ public class Home extends AppCompatActivity {
         // Verifica se o cursor achou alguma coisa
         if(cursor.moveToFirst()){
             do{
-                // Pega os dados da aula do cursor
+                // Pega os dados das aulas do cursor
                 String aula = cursor.getString(0); // Nome da aula
                 String inicio = cursor.getString(1); // Horario que começa
                 String fim = cursor.getString(2); // Horario que termina
                 int lab = cursor.getInt(3); // Pega o numero do laboratorio
                 String professor = cursor.getString(4); // Nome do professor
 
+                switch (idModulo){
+                    case 1:
+                        modulo = "1°DS";
+                        break;
+                    case 2:
+                        modulo = "1°DS";
+                        break;
+                    case 3:
+                        modulo = "2°DS";
+                        break;
+                    case 4:
+                        modulo = "2°DS";
+                        break;
+                    case 5:
+                        modulo = "3°DS";
+                        break;
+
+                }
+
+
 
                 // Cria TextView para cada aula
                 TextView tvAula = new TextView(this);
-                tvAula.setText(idModulo + "°DS:\n" + aula + " - " + inicio + " até " + fim + "\nProfessor(a): " + professor + "\nLab: " + lab); // Define o texto
+                tvAula.setText(modulo + " " + turma + "\n" + aula + " - " + inicio + " até " + fim + "\nProfessor(a): " + professor + "\nLab: " + lab); // Define o texto
                 tvAula.setTextSize(16); // Tamanho da fonte do texto;
                 tvAula.setPadding(16,16,16,16); // Espaçamento interno
                 tvAula.setBackgroundResource(android.R.drawable.dialog_holo_light_frame); // Uma borda simples
