@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAF6F6"
     tools:context=".TelaMod">
 
     <!-- ========================= -->
@@ -22,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:text="Selecione seu módulo"
+        android:text="Módulos e Turmas"
         android:textAllCaps="true"
         android:textColor="#070707"
         android:textSize="22sp"
@@ -36,19 +34,19 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
-        android:orientation="vertical"
         android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/txtTitulo"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtTitulo"
         app:layout_constraintVertical_bias="0.35">
 
         <Button
             android:id="@+id/btn1modA"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:backgroundTint="#0B0B0B"
+            android:backgroundTint="#BF1919"
             android:text="1º DS A"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
@@ -58,7 +56,7 @@
             android:id="@+id/btn1modB"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:backgroundTint="#0B0B0B"
+            android:backgroundTint="#3F51B5"
             android:text="1º DS B"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
@@ -70,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="16dp"
-            android:backgroundTint="#0B0B0B"
+            android:backgroundTint="#BF1919"
             android:text="2º DS A"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
@@ -81,7 +79,7 @@
             android:id="@+id/btn2modB"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:backgroundTint="#0B0B0B"
+            android:backgroundTint="#3F51B5"
             android:text="2º DS B"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
@@ -93,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="16dp"
-            android:backgroundTint="#0B0B0B"
+            android:backgroundTint="#BF1919"
             android:text="3º DS"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
@@ -109,11 +107,11 @@
         android:layout_height="65dp"
         android:layout_marginStart="4dp"
         android:layout_marginBottom="40dp"
-        app:srcCompat="@drawable/linknsa"
-        app:layout_constraintStart_toEndOf="@+id/linkGuilherme"
-        app:layout_constraintEnd_toStartOf="@+id/linkNsa"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0" />
+        app:layout_constraintEnd_toStartOf="@+id/linkNsa"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/linkGuilherme"
+        app:srcCompat="@drawable/linknsa" />
 
     <!-- ========================= -->
     <!--     BARRA DE NAVEGAÇÃO    -->

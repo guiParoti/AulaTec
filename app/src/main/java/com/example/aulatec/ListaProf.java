@@ -89,7 +89,7 @@ public class ListaProf extends AppCompatActivity {
                 do{
                     String nomeProf = cursor.getString(0);
                     String emailProf = cursor.getString(1);
-                    lista.add("\nProfessor(a): " + nomeProf + "\nEmail: " + emailProf + "\n");
+                    lista.add(nomeProf);
                     nomes.add(nomeProf);
                     emails.add((emailProf));
 

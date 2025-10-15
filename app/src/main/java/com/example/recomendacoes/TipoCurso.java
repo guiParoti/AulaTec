@@ -23,6 +23,7 @@ public class TipoCurso extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_tipo_curso);
         int idModulo = getIntent().getIntExtra("id_modulo", 3);
+        String turma =  getIntent().getStringExtra("turma");
 
         Button btnCGratis = findViewById(R.id.btnCGratis);
         Button btnCPago = findViewById(R.id.btnCPagos);
@@ -32,6 +33,7 @@ public class TipoCurso extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(TipoCurso.this, CursosGratuitos.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
             }
         });
@@ -41,6 +43,7 @@ public class TipoCurso extends AppCompatActivity {
             public void onClick(View view){
                 Intent intent = new Intent(TipoCurso.this, CursosPagos.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
             }
         });
@@ -53,31 +56,34 @@ public class TipoCurso extends AppCompatActivity {
             int id = item.getItemId();
             if (id == R.id.nav_modulo) {
                 Intent intent = new Intent(TipoCurso.this, TelaMod.class);
-                intent.putExtra("id_modulo", idModulo);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
             }else if(id == R.id.nav_home){
                 Intent intent = new Intent(TipoCurso.this, Home.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
             }else if(id == R.id.nav_emails){
                 Intent intent = new Intent(TipoCurso.this, ListaProf.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
             }else if(id == R.id.nav_aulas){
                 Intent intent = new Intent(TipoCurso.this, ListaAulas.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
             }else if(id == R.id.nav_recomendacoes){
                 Intent intent = new Intent(TipoCurso.this, EscolherRecomendacoes.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;

@@ -41,14 +41,14 @@
                     android:padding="12dp">
 
                     <ImageView
-                        android:id="@+id/capaJogo"
+                        android:id="@+id/capaCurso"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
                         app:srcCompat="@drawable/cursoemvideo" />
 
                     <TextView
-                        android:id="@+id/txtNomeJogo"
+                        android:id="@+id/txtNomeCurso"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Curso em Vídeo"
@@ -57,7 +57,7 @@
                         android:paddingTop="8dp" />
 
                     <TextView
-                        android:id="@+id/txtDescricaoJogo"
+                        android:id="@+id/txtDescricaoCurso"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="4dp"
@@ -90,14 +90,14 @@
                     android:padding="12dp">
 
                     <ImageView
-                        android:id="@+id/capaJogo2"
+                        android:id="@+id/capaCurso2"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
                         app:srcCompat="@drawable/tic_em_trilhas2" />
 
                     <TextView
-                        android:id="@+id/txtNomeJogo2"
+                        android:id="@+id/txtNomeCurso2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="TIC em Trilhas"
@@ -106,7 +106,7 @@
                         android:paddingTop="8dp" />
 
                     <TextView
-                        android:id="@+id/txtDescricaoJogo2"
+                        android:id="@+id/txtDescricaoCurso2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="4dp"
@@ -124,6 +124,57 @@
                         android:autoLink="web" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/capaCurso3"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/jornada_do_dev_icon" />
+
+                    <TextView
+                        android:id="@+id/txtNomeCurso3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:text="JORNADA DO DEV"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtDescricaoCurso3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="4dp"
+                        android:text="Jornada do Dev é uma plataforma gratuita de aprendizado voltada para quem quer iniciar ou evoluir na área de programação. Com trilhas de estudos organizadas, aulas em vídeo e desafios práticos, ela ajuda você a aprender de forma estruturada e aplicada.  Além disso, a plataforma oferece projetos reais, comunidade ativa e suporte para tirar dúvidas, tornando o aprendizado mais dinâmico e acessível. Ideal para iniciantes e desenvolvedores que buscam aprimorar suas habilidades sem custo."
+                        android:textColor="#333"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/txtLink3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autoLink="web"
+                        android:paddingTop="6dp"
+                        android:text="Acesse: https://jornadadodev.com.br"
+                        android:textColor="#1E88E5" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
         </LinearLayout>
     </ScrollView>
 

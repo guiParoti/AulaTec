@@ -78,6 +78,7 @@ public class EscolherRecomendacoes extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(EscolherRecomendacoes.this, TipoCurso.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
             }
         });
@@ -87,6 +88,7 @@ public class EscolherRecomendacoes extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(EscolherRecomendacoes.this, RJogos.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
             }
         });
@@ -96,6 +98,7 @@ public class EscolherRecomendacoes extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(EscolherRecomendacoes.this, RFilmes.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
             }
         });
@@ -105,6 +108,7 @@ public class EscolherRecomendacoes extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(EscolherRecomendacoes.this, RApps.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
             }
         });

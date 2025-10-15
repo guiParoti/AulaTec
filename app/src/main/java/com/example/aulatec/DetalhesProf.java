@@ -40,7 +40,7 @@ public class DetalhesProf extends AppCompatActivity {
         DatabaseHelper bdHelper = new DatabaseHelper(this);
         SQLiteDatabase db = bdHelper.getReadableDatabase();
 
-        txtNome.setText("Professor(a): " + nomeProf + "\nEmail: " + emailProf + "\nAulas:");
+        txtNome.setText(nomeProf + "\n"+ emailProf + "\nAulas:");
         txtNome.setTextSize(20);
         txtNome.setBackgroundResource(android.R.drawable.dialog_holo_light_frame);
 
@@ -115,6 +115,11 @@ public class DetalhesProf extends AppCompatActivity {
                 txtAulas.setTextSize(20);
                 containerProfessor.addView(txtAulas);
             }while (cursor.moveToNext());
+        }else{
+            TextView txtAulas = new TextView(this);
+            txtAulas.setText("Não tem aulas com esse professor nesse módulo");
+            txtAulas.setTextSize(20);
+            containerProfessor.addView(txtAulas);
         }
         cursor.close();
         db.close();

@@ -29,6 +29,7 @@ public class CursosGratuitos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cursos_gratuitos);
         int idModulo = getIntent().getIntExtra("id_modulo", 3);
+        String turma =  getIntent().getStringExtra("turma");
 
         BottomNavigationView barraNavegacao = findViewById(R.id.bottom_navigation);
         barraNavegacao.setSelectedItemId(R.id.nav_recomendacoes);
@@ -39,30 +40,35 @@ public class CursosGratuitos extends AppCompatActivity {
             if (id == R.id.nav_modulo) {
                 Intent intent = new Intent(CursosGratuitos.this, TelaMod.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
             }else if(id == R.id.nav_home){
                 Intent intent = new Intent(CursosGratuitos.this, Home.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
             }else if(id == R.id.nav_emails){
                 Intent intent = new Intent(CursosGratuitos.this, ListaProf.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
             }else if(id == R.id.nav_aulas){
                 Intent intent = new Intent(CursosGratuitos.this, ListaAulas.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
             }else if(id == R.id.nav_recomendacoes){
                 Intent intent = new Intent(CursosGratuitos.this, EscolherRecomendacoes.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;

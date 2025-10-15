@@ -20,7 +20,10 @@ public class RApps extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_rapps);
+
         int idModulo = getIntent().getIntExtra("id_modulo", 3);
+        String turma = getIntent().getStringExtra("turma");
+
         BottomNavigationView barraNavegacao = findViewById(R.id.bottom_navigation);
         barraNavegacao.setSelectedItemId(R.id.nav_recomendacoes);
 
@@ -29,31 +32,34 @@ public class RApps extends AppCompatActivity {
             int id = item.getItemId();
             if (id == R.id.nav_modulo) {
                 Intent intent = new Intent(RApps.this, TelaMod.class);
-                intent.putExtra("id_modulo", idModulo);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
             }else if(id == R.id.nav_home){
                 Intent intent = new Intent(RApps.this, Home.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
             }else if(id == R.id.nav_emails){
                 Intent intent = new Intent(RApps.this, ListaProf.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
             }else if(id == R.id.nav_aulas){
                 Intent intent = new Intent(RApps.this, ListaAulas.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
             }else if(id == R.id.nav_recomendacoes){
                 Intent intent = new Intent(RApps.this, EscolherRecomendacoes.class);
                 intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
