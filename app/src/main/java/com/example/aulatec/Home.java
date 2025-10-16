@@ -6,13 +6,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.example.funcoes_curiosidades.FuncaoCuriosidade;
 import com.example.recomendacoes.EscolherRecomendacoes;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -21,8 +22,6 @@ import java.util.Calendar;
 public class Home extends AppCompatActivity {
 
     String modulo;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,15 +33,24 @@ public class Home extends AppCompatActivity {
 
         // Pega o container onde vamos adicionar as aulas
         LinearLayout containerAulas = findViewById(R.id.containerAulas);
+
         //TextView que vai receber o dia da semana
         TextView txtDia = findViewById(R.id.txtdiaSem);
         TextView linkNsa = findViewById(R.id.txtLinkNsa);
+
 //      Button btnProf = findViewById(R.id.btnListProf);
 //      Button btnAulas = findViewById(R.id.btnVerAulas);
 //      Button btnRecomendacoes = findViewById(R.id.btnRecomendacoes);
+
         BottomNavigationView barraNavegacao = findViewById(R.id.bottom_navigation);
         barraNavegacao.setSelectedItemId(R.id.nav_home);
 
+        TextView txtCuriosidade = findViewById(R.id.txtCuriosidade);
+        FuncaoCuriosidade curiosidade1 = new FuncaoCuriosidade();
+        curiosidade1.gerarCuriosidadeJava();
+
+        txtCuriosidade.setText(curiosidade1.getCuriosidadeEscolhida());
+        txtCuriosidade.setBackgroundResource(android.R.drawable.dialog_holo_light_frame);;
 
             barraNavegacao.setOnItemSelectedListener(item -> {
                 int id = item.getItemId(); // pega o id do item clicado
@@ -175,7 +183,6 @@ public class Home extends AppCompatActivity {
                 tvAula.setTextSize(16); // Tamanho da fonte do texto;
                 tvAula.setPadding(16,16,16,16); // Espaçamento interno
                 tvAula.setBackgroundResource(android.R.drawable.dialog_holo_light_frame); // Uma borda simples
-
                 // Adiciona o TextView no container
                 containerAulas.addView(tvAula);
 
@@ -193,6 +200,7 @@ public class Home extends AppCompatActivity {
         // Fecha o cursor e o banco pra liberar memoria
         cursor.close();
         bd.close();
+
 
 // Define o dia da semana no TextView txtDia
         switch(diaSemana){

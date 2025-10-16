@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -23,12 +23,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:paddingTop="32dp"
+                android:paddingBottom="16dp"
                 android:text="Segunda-feira"
                 android:textColor="#1E88E5"
                 android:textSize="28sp"
-                android:textStyle="bold"
-                android:paddingTop="32dp"
-                android:paddingBottom="16dp" />
+                android:textStyle="bold" />
 
             <!-- Lista de aulas -->
             <ScrollView
@@ -41,7 +41,7 @@
                     android:id="@+id/containerAulas"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"/>
+                    android:orientation="vertical" />
             </ScrollView>
 
             <!-- Botão Email dos Professores -->
@@ -50,35 +50,62 @@
 
             <!-- Texto adicional -->
             <TextView
+                android:id="@+id/txtCuriosidadePalavra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Curiosidades:"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!-- Link NSA -->
+            <TextView
+                android:id="@+id/txtCuriosidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:text="Quer ver mais sobre suas aulas, faltas e ter acesso aos benefícios do seu email institucional..."
                 android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
+                android:textStyle="bold" />
 
-            <!-- Link NSA -->
             <TextView
                 android:id="@+id/txtLinkNsa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:text="Clique aqui para ir para o NSA!"
                 android:textAlignment="center"
                 android:textColor="@android:color/holo_blue_dark"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="12dp" />
+                android:textStyle="bold" />
 
             <!-- Imagem link NSA -->
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:src="@drawable/linknsa"
-                android:layout_marginBottom="12dp" />
+                android:layout_marginBottom="12dp"
+                android:src="@drawable/linknsa" />
 
         </LinearLayout>
     </ScrollView>
