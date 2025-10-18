@@ -108,6 +108,46 @@
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/capaFilme3"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/os_estagiarios_2" />
+
+                    <TextView
+                        android:id="@+id/txtNomeFilme3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:text="Os Estagiários"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtDescricaoFilme3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="4dp"
+                        android:text="Lançado em 2013, Os Estagiários acompanha dois vendedores experientes que veem suas carreiras desmoronar diante do avanço da tecnologia. Em uma tentativa ousada de recomeço, eles se inscrevem para um estágio no Google — mesmo sem entender nada de programação.  Durante a disputa com jovens talentos de T.I., os dois enfrentam desafios de lógica, trabalho em equipe e diversas situações cômicas que evidenciam o contraste entre gerações e o poder da adaptação."
+                        android:textColor="#333"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
 
