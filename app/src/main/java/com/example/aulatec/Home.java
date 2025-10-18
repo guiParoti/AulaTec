@@ -1,5 +1,7 @@
 package com.example.aulatec;
 
+import static android.view.View.TEXT_ALIGNMENT_CENTER;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -47,10 +49,11 @@ public class Home extends AppCompatActivity {
 
         TextView txtCuriosidade = findViewById(R.id.txtCuriosidade);
         FuncaoCuriosidade curiosidade1 = new FuncaoCuriosidade();
-        curiosidade1.gerarCuriosidadeJava();
+        curiosidade1.escolherFuncaoCuriosidade();
 
         txtCuriosidade.setText(curiosidade1.getCuriosidadeEscolhida());
-        txtCuriosidade.setBackgroundResource(android.R.drawable.dialog_holo_light_frame);;
+        txtCuriosidade.setBackgroundResource(android.R.drawable.dialog_holo_light_frame);
+        txtCuriosidade.setPadding(50,50,50,50);
 
             barraNavegacao.setOnItemSelectedListener(item -> {
                 int id = item.getItemId(); // pega o id do item clicado
@@ -174,17 +177,27 @@ public class Home extends AppCompatActivity {
                         break;
 
                 }
-
-
-
-                // Cria TextView para cada aula
-                TextView tvAula = new TextView(this);
-                tvAula.setText(modulo + " " + turma + "\n" + aula + " - " + inicio + " até " + fim + "\nProfessor(a): " + professor + "\nLab: " + lab); // Define o texto
-                tvAula.setTextSize(16); // Tamanho da fonte do texto;
-                tvAula.setPadding(16,16,16,16); // Espaçamento interno
-                tvAula.setBackgroundResource(android.R.drawable.dialog_holo_light_frame); // Uma borda simples
-                // Adiciona o TextView no container
-                containerAulas.addView(tvAula);
+                if(lab == 0) {
+                    String maker = "Maker";
+                    // Cria TextView para cada aula
+                    TextView tvAula = new TextView(this);
+                    tvAula.setText(modulo + " " + turma + "\n" + aula + " - " + inicio + " até " + fim + "\nProfessor(a): " + professor + "\nLab: " + maker); // Define o texto
+                    tvAula.setTextSize(16); // Tamanho da fonte do texto;
+                    tvAula.setPadding(16, 16, 16, 16); // Espaçamento interno
+                    tvAula.setBackgroundResource(android.R.drawable.dialog_holo_light_frame); // Uma borda simples
+                    tvAula.setTextAlignment(TEXT_ALIGNMENT_CENTER);
+                    // Adiciona o TextView no container
+                    containerAulas.addView(tvAula);
+                }else{
+                    TextView tvAula = new TextView(this);
+                    tvAula.setText(modulo + " " + turma + "\n" + aula + " - " + inicio + " até " + fim + "\nProfessor(a): " + professor + "\nLab: " + lab); // Define o texto
+                    tvAula.setTextSize(16); // Tamanho da fonte do texto;
+                    tvAula.setPadding(16, 16, 16, 16); // Espaçamento interno
+                    tvAula.setBackgroundResource(android.R.drawable.dialog_holo_light_frame); // Uma borda simples
+                    tvAula.setTextAlignment(TEXT_ALIGNMENT_CENTER);
+                    // Adiciona o TextView no container
+                    containerAulas.addView(tvAula);
+                }
 
             }while(cursor.moveToNext()); // Continua enquanto tiver aulas
         } else {
@@ -194,6 +207,7 @@ public class Home extends AppCompatActivity {
             tvAula.setTextSize(16);
             tvAula.setPadding(16,16,16,16);
             tvAula.setBackgroundResource(android.R.drawable.dialog_holo_light_frame); // Uma borda simples
+            tvAula.setTextAlignment(TEXT_ALIGNMENT_CENTER);
             containerAulas.addView(tvAula);
         }
 

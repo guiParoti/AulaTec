@@ -34,6 +34,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="8dp"
+                android:paddingTop="35dp"
                 android:text="Detalhes do Professor(a)"
                 android:textSize="18sp"
                 android:textStyle="bold" />

@@ -8,113 +8,119 @@
     tools:context=".TelaMod">
 
     <!-- ========================= -->
-    <!--       TÍTULO DA TELA      -->
+    <!--     CONTEÚDO ROLÁVEL      -->
     <!-- ========================= -->
-
-    <!-- ========================= -->
-    <!--   BLOCO DE BOTÕES (DS)    -->
-    <!-- ========================= -->
-
-    <TextView
-        android:id="@+id/txtTitulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="Módulos e Turmas"
-        android:textAllCaps="true"
-        android:textColor="#070707"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/containerBotoes"
+    <ScrollView
+        android:id="@+id/scrollContainer"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="32dp"
-        android:gravity="center"
-        android:orientation="vertical"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtTitulo"
-        app:layout_constraintVertical_bias="0.35">
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <Button
-            android:id="@+id/btn1modA"
+        <LinearLayout
+            android:id="@+id/scrollContent"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:backgroundTint="#BF1919"
-            android:text="1º DS A"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="32dp">
 
-        <Button
-            android:id="@+id/btn1modB"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:backgroundTint="#3F51B5"
-            android:text="1º DS B"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold" />
+            <!-- ========================= -->
+            <!--       TÍTULO DA TELA      -->
+            <!-- ========================= -->
+            <TextView
+                android:id="@+id/txtTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:layout_gravity="center"
+                android:text="Módulos e Turmas"
+                android:textAllCaps="true"
+                android:textColor="#070707"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
+            <!-- ========================= -->
+            <!--   BLOCO DE BOTÕES (DS)    -->
+            <!-- ========================= -->
+            <LinearLayout
+                android:id="@+id/containerBotoes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn2modA"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#BF1919"
-            android:text="2º DS A"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold" />
+                <Button
+                    android:id="@+id/btn1modA"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:backgroundTint="#BF1919"
+                    android:text="1º DS A"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
 
+                <Button
+                    android:id="@+id/btn1modB"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="12dp"
+                    android:backgroundTint="#3F51B5"
+                    android:text="1º DS B"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btn2modB"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:backgroundTint="#3F51B5"
-            android:text="2º DS B"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold" />
+                <Button
+                    android:id="@+id/btn2modA"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="#BF1919"
+                    android:text="2º DS A"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
 
+                <Button
+                    android:id="@+id/btn2modB"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="12dp"
+                    android:backgroundTint="#3F51B5"
+                    android:text="2º DS B"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btn3mod"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#BF1919"
-            android:text="3º DS"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold" />
-    </LinearLayout>
+                <Button
+                    android:id="@+id/btn3mod"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="#BF1919"
+                    android:text="3º DS"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
     <!-- ========================= -->
-    <!--       ÍCONE DECORATIVO    -->
+    <!-- ÍCONE FIXO NO CANTO INFERIOR -->
     <!-- ========================= -->
     <ImageView
         android:id="@+id/iconNsa2"
         android:layout_width="75dp"
         android:layout_height="65dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="40dp"
+        android:layout_margin="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/linkNsa"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/linkGuilherme"
+        app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/linknsa" />
-
-    <!-- ========================= -->
-    <!--     BARRA DE NAVEGAÇÃO    -->
-    <!-- ========================= -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

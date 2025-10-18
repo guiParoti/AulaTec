@@ -139,8 +139,15 @@ public class ListaAulas extends AppCompatActivity {
                     String horaFim = cursor.getString(3);
                     int lab = cursor.getInt(4);
                     String nomeProfessor = cursor.getString(5);
-                    lista.add("\n"+ diaSemana + "\n" + modulo + "\n" + nomeAula + "\n" + horaInicio + " - " + horaFim + "\nProfessor(a): "
-                            + nomeProfessor + "\nLab: " + lab + "\n");
+
+                    if(lab == 0) {
+                        String maker = "Maker";
+                        lista.add("\n" + diaSemana + "\n" + modulo + "\n" + nomeAula + "\n" + horaInicio + " - " + horaFim + "\nProfessor(a): "
+                                + nomeProfessor + "\nLab: " + maker + "\n");
+                    }else{
+                        lista.add("\n" + diaSemana + "\n" + modulo + "\n" + nomeAula + "\n" + horaInicio + " - " + horaFim + "\nProfessor(a): "
+                                + nomeProfessor + "\nLab: " + lab + "\n");
+                    }
                 }while (cursor.moveToNext());
             }
 
