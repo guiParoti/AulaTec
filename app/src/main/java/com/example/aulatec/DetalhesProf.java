@@ -40,7 +40,7 @@ public class DetalhesProf extends AppCompatActivity {
         DatabaseHelper bdHelper = new DatabaseHelper(this);
         SQLiteDatabase db = bdHelper.getReadableDatabase();
 
-        txtNome.setText(nomeProf + "\n"+ emailProf + "\nAulas:");
+        txtNome.setText(nomeProf + "\n"+ emailProf + "\nAulas nesse módulo:");
         txtNome.setTextSize(20);
         txtNome.setBackgroundResource(android.R.drawable.dialog_holo_light_frame);
 
