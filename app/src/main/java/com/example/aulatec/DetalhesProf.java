@@ -1,5 +1,7 @@
 package com.example.aulatec;
 
+import static android.view.View.TEXT_ALIGNMENT_CENTER;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -42,6 +44,7 @@ public class DetalhesProf extends AppCompatActivity {
 
         txtNome.setText(nomeProf + "\n"+ emailProf + "\nAulas nesse módulo:");
         txtNome.setTextSize(20);
+        txtNome.setTextAlignment(TEXT_ALIGNMENT_CENTER);
         txtNome.setBackgroundResource(android.R.drawable.dialog_holo_light_frame);
 
 
@@ -81,7 +84,7 @@ public class DetalhesProf extends AppCompatActivity {
         });
 
         Cursor cursor = db.rawQuery(
-                "SELECT a.nomeAula, a.diaSemana from aulas a " +
+                "SELECT a.nomeAula, a.diaSemana, a.lab from aulas a " +
                         "JOIN professores p ON a.id_professor = p.id_professor " +
                         "JOIN modulos m ON a.id_modulo = m.id_modulo " +
                         "WHERE p.nomeProf = ? AND a.id_modulo = ? AND m.turma = ?",
@@ -109,10 +112,12 @@ public class DetalhesProf extends AppCompatActivity {
                         break;
                 }
                 String nomeAulas = cursor.getString(0);
+                int lab = cursor.getInt(2);
 
                 TextView txtAulas = new TextView(this);
-                txtAulas.setText("• " + diaSemana + " - " + nomeAulas);
+                txtAulas.setText("• " + diaSemana + " - " + nomeAulas + " - lab - " + lab);
                 txtAulas.setTextSize(20);
+                txtAulas.setTextAlignment(TEXT_ALIGNMENT_CENTER);
                 containerProfessor.addView(txtAulas);
             }while (cursor.moveToNext());
         }else{

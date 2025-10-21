@@ -1,5 +1,7 @@
 package com.example.aulatec;
 
+import static android.view.View.TEXT_ALIGNMENT_CENTER;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -142,10 +144,10 @@ public class ListaAulas extends AppCompatActivity {
 
                     if(lab == 0) {
                         String maker = "Maker";
-                        lista.add("\n" + diaSemana + "\n" + modulo + "\n" + nomeAula + "\n" + horaInicio + " - " + horaFim + "\nProfessor(a): "
+                        lista.add("\n" + diaSemana + "\n" + modulo + "\n" + nomeAula + "\n" + horaInicio + " - " + horaFim + "\n"
                                 + nomeProfessor + "\nLab: " + maker + "\n");
                     }else{
-                        lista.add("\n" + diaSemana + "\n" + modulo + "\n" + nomeAula + "\n" + horaInicio + " - " + horaFim + "\nProfessor(a): "
+                        lista.add("\n" + diaSemana + "\n" + modulo + "\n" + nomeAula + "\n" + horaInicio + " - " + horaFim + "\n"
                                 + nomeProfessor + "\nLab: " + lab + "\n");
                     }
                 }while (cursor.moveToNext());

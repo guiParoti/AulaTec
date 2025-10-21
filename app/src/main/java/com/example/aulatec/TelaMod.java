@@ -28,7 +28,6 @@ public class TelaMod extends AppCompatActivity {
         Button segDs = findViewById(R.id.btn2modA);
         Button segDsB = findViewById(R.id.btn2modB);
         Button terDs = findViewById(R.id.btn3mod);
-        ImageView linkImageNsa = findViewById(R.id.iconNsa2);
         //TextView linkNsa = findViewById(R.id.linkNsa2);
 
 
@@ -89,7 +88,6 @@ public class TelaMod extends AppCompatActivity {
             startActivity(intent);
         };
         //linkNsa.setOnClickListener(abrirNsa);
-        linkImageNsa.setOnClickListener(abrirNsa);
 
     }
 }
