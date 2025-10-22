@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Handler handler = new Handler();
 
-        TextView linkGui = findViewById(R.id.linkGuilherme);
-        ImageView linkImageIsta = findViewById(R.id.iconInsta);
+//        TextView linkGui = findViewById(R.id.linkGuilherme);
+//        ImageView linkImageIsta = findViewById(R.id.iconInsta);
 
 
         Runnable abrirHome = () -> {
@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         };
 
-        linkGui.setOnClickListener(abrirPerfil);
-        linkImageIsta.setOnClickListener(abrirPerfil);
+//        linkGui.setOnClickListener(abrirPerfil);
+//        linkImageIsta.setOnClickListener(abrirPerfil);
 
 
 

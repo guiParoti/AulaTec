@@ -35,34 +35,10 @@
         <!-- ========================= -->
         <!--       ÍCONE INSTAGRAM     -->
         <!-- ========================= -->
-        <ImageView
-            android:id="@+id/iconInsta"
-            android:layout_width="57dp"
-            android:layout_height="46dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginBottom="48dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/linkGuilherme"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:srcCompat="@drawable/insta" />
 
         <!-- ========================= -->
         <!--        LINK GUILHERME     -->
         <!-- ========================= -->
-        <TextView
-            android:id="@+id/linkGuilherme"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="240dp"
-            android:layout_marginBottom="60dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="guilhermeparoti"
-            android:textColor="#FBF7F7"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String nomeBanco = "etec.db"; // Nome do banco de dados
-    private static final int versaoBanco = 43; // Versão do Banco (usado pra atualizar a tabela)
+    private static final int versaoBanco = 44; // Versão do Banco (usado pra atualizar a tabela)
 
 
 
@@ -174,7 +174,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         bd.execSQL("INSERT INTO professores (nomeProf, emailProf)" +
                 "VALUES ('Andre', 'andre.candido@etec.sp.gov.br')"); // id_professor(7)
         bd.execSQL("INSERT INTO professores (nomeProf, emailProf)" +
-                "VALUES ('Fabricio', '')"); // id_professor(8)
+                "VALUES ('Fabricio', 'fabricio.bernado@etec.sp.gov.com')"); // id_professor(8)
         bd.execSQL("INSERT INTO professores (nomeProf, emailProf)" +
                 "VALUES ('Guto', 'profgutomaze@gmail.com')"); // id_professor(9)
 
