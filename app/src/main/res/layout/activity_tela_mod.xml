@@ -113,6 +113,13 @@
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold" />
+
+                <CheckBox
+                    android:id="@+id/checkBox3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lembrar módulo" />
+
             </LinearLayout>
 
         </LinearLayout>

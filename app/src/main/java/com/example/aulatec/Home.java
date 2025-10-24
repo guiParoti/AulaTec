@@ -86,7 +86,7 @@ public class Home extends AppCompatActivity {
                     return true;
 
                 }else if(id == R.id.nav_modulo){
-                    Intent intent = new Intent(Home.this, TelaMod.class);
+                    Intent intent = new Intent(Home.this, AreaAluno.class);
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                     return true;

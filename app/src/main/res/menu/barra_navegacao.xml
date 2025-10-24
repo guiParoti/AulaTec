@@ -24,6 +24,6 @@
 
     <item
         android:id="@+id/nav_modulo"
-        android:icon="@drawable/ic_modulo"
-        android:title="Módulos" />
+        android:icon="@drawable/ic_perfil"
+        android:title="Você" />
 </menu>

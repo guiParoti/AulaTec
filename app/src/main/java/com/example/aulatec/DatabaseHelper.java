@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String nomeBanco = "etec.db"; // Nome do banco de dados
-    private static final int versaoBanco = 44; // Versão do Banco (usado pra atualizar a tabela)
+    private static final int versaoBanco = 47; // Versão do Banco (usado pra atualizar a tabela)
 
 
 
@@ -43,6 +43,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "id_modulo INTEGER," +
                 "FOREIGN KEY (id_professor) REFERENCES professores(id_professor)," +
                 "FOREIGN KEY (id_modulo) REFERENCES modulos(id_modulo))");
+
+        bd.execSQL("CREATE TABLE alunos(" +
+                "id_aluno INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "nomeAluno TEXT)");
 
         // Insere os dados fixos do banco para cada dia da semana
 
@@ -199,6 +203,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         bd.execSQL("DROP TABLE IF EXISTS aulas");
         bd.execSQL("DROP TABLE IF EXISTS professores");
         bd.execSQL("DROP TABLE IF EXISTS modulos");
+        bd.execSQL("DROP TABLE IF EXISTS alunos");
         onCreate(bd);
     }
 

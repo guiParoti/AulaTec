@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    tools:context=".AreaAluno">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center_horizontal">
+
+        <!-- Foto de perfil -->
+        <ImageView
+            android:id="@+id/capaAluno"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp"
+            android:scaleType="centerCrop"
+            android:src="@android:drawable/ic_menu_gallery" />
+
+        <!-- Botão editar imagem/nome -->
+        <Button
+            android:id="@+id/btnEditarPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#781919"
+            android:drawableStart="@drawable/ic_editar"
+            android:drawablePadding="8dp"
+            android:text="Editar"
+            android:textColor="@android:color/white"
+            app:icon="@drawable/ic_editar" />
+
+        <!-- Nome do aluno -->
+        <TextView
+            android:id="@+id/txtNomeAluno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Nome do Aluno"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- Seção de tarefas -->
+        <TextView
+            android:id="@+id/txtTarefas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Tarefas"
+            android:textAlignment="center"
+            android:textColor="#222222"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <!-- Botão adicionar tarefa -->
+
+        <!-- Lista de tarefas -->
+        <Button
+            android:id="@+id/btnNovaTarefa"
+            android:layout_width="57dp"
+            android:layout_height="44dp"
+            android:layout_gravity="right"
+            android:backgroundTint="#730505"
+            app:icon="@drawable/ic_adicionar"
+            app:iconGravity="textTop"
+            app:iconPadding="0dp"
+            app:iconSize="18dp"
+            app:iconTint="#F8F3F3"
+            app:iconTintMode="multiply" />
+
+        <ListView
+            android:id="@+id/listaTarefas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:dividerHeight="1dp"
+            android:divider="#CCCCCC"
+            android:background="@android:color/white" />
+
+    </LinearLayout>
+</ScrollView>
