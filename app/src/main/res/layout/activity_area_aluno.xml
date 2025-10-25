@@ -1,89 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="#F5F5F5"
     tools:context=".AreaAluno">
 
-    <LinearLayout
+    <!-- Scroll principal com as informações do aluno -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:gravity="center_horizontal">
+
+            <!-- Foto de perfil -->
+            <ImageView
+                android:id="@+id/capaAluno"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="8dp"
+                android:scaleType="centerCrop"
+                android:src="@android:drawable/ic_menu_gallery" />
+
+            <!-- Botão editar imagem/nome -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEditarPerfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#781919"
+                android:text="Editar"
+                android:textColor="@android:color/white"
+                app:icon="@drawable/ic_editar"
+                app:iconPadding="8dp"
+                app:iconTint="@android:color/white" />
+
+            <!-- Nome do aluno -->
+            <TextView
+                android:id="@+id/txtNomeAluno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Nome do Aluno"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <!-- Seção de tarefas -->
+            <TextView
+                android:id="@+id/txtTarefas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Tarefas"
+                android:textAlignment="center"
+                android:textColor="#222222"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <!-- Botão adicionar tarefa -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnNovaTarefa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#730505"
+                android:text="Adicionar"
+                android:textColor="@android:color/white"
+                app:icon="@drawable/ic_adicionar"
+                app:iconGravity="textStart"
+                app:iconPadding="8dp"
+                app:iconTint="@android:color/white" />
+
+            <!-- Lista de tarefas -->
+            <ListView
+                android:id="@+id/listaTarefas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:dividerHeight="1dp"
+                android:divider="#CCCCCC"
+                android:background="@android:color/white" />
+
+            <!-- Botão trocar módulo -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnTrocarModulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:backgroundTint="#730505"
+                android:text="Trocar Módulo"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Barra de navegação inferior -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:gravity="center_horizontal">
-
-        <!-- Foto de perfil -->
-        <ImageView
-            android:id="@+id/capaAluno"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="8dp"
-            android:scaleType="centerCrop"
-            android:src="@android:drawable/ic_menu_gallery" />
-
-        <!-- Botão editar imagem/nome -->
-        <Button
-            android:id="@+id/btnEditarPerfil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#781919"
-            android:drawableStart="@drawable/ic_editar"
-            android:drawablePadding="8dp"
-            android:text="Editar"
-            android:textColor="@android:color/white"
-            app:icon="@drawable/ic_editar" />
-
-        <!-- Nome do aluno -->
-        <TextView
-            android:id="@+id/txtNomeAluno"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Nome do Aluno"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <!-- Seção de tarefas -->
-        <TextView
-            android:id="@+id/txtTarefas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Tarefas"
-            android:textAlignment="center"
-            android:textColor="#222222"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-        <!-- Botão adicionar tarefa -->
-
-        <!-- Lista de tarefas -->
-        <Button
-            android:id="@+id/btnNovaTarefa"
-            android:layout_width="57dp"
-            android:layout_height="44dp"
-            android:layout_gravity="right"
-            android:backgroundTint="#730505"
-            app:icon="@drawable/ic_adicionar"
-            app:iconGravity="textTop"
-            app:iconPadding="0dp"
-            app:iconSize="18dp"
-            app:iconTint="#F8F3F3"
-            app:iconTintMode="multiply" />
-
-        <ListView
-            android:id="@+id/listaTarefas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:dividerHeight="1dp"
-            android:divider="#CCCCCC"
-            android:background="@android:color/white" />
-
-    </LinearLayout>
-</ScrollView>
+        android:layout_gravity="bottom"
+        android:background="?android:attr/windowBackground"
+        app:menu="@menu/barra_navegacao" />
+</LinearLayout>

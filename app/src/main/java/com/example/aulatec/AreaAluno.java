@@ -5,9 +5,11 @@ import static android.view.View.TEXT_ALIGNMENT_CENTER;
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,6 +25,8 @@ public class AreaAluno extends AppCompatActivity {
 
     private DatabaseHelper bancoDados;
     private TextView txtNomeAluno;
+    private String titulo;
+    private String descricao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +35,9 @@ public class AreaAluno extends AppCompatActivity {
         setContentView(R.layout.activity_area_aluno);
 
         Button btnEditar = findViewById(R.id.btnEditarPerfil);
+        Button btnNovaTarefa = findViewById(R.id.btnNovaTarefa);
         txtNomeAluno = findViewById(R.id.txtNomeAluno);
+        Button btnVoltarTelaMod = findViewById(R.id.btnTrocarModulo);
 
         bancoDados = new DatabaseHelper(this);
         carregarDadosAluno();
@@ -46,17 +52,9 @@ public class AreaAluno extends AppCompatActivity {
                         String novoNomeAluno = nome.getText().toString().trim();
                         if(!novoNomeAluno.isEmpty()){
                             try {
-                                SQLiteDatabase bd = bancoDados.getReadableDatabase();
-                                ContentValues valores = new ContentValues();
-                                valores.put("nomeAluno", novoNomeAluno);
-
-                                long resultadoInsert = bd.insert("alunos", null, valores);
                                 salvarNomeAluno(novoNomeAluno);
-
                                 txtNomeAluno.setText(novoNomeAluno);
                                 Toast.makeText(this, "Nome salvo!", Toast.LENGTH_SHORT).show();
-
-                                bd.close();
 
                             }catch(Exception a){
                                 Toast.makeText(this, "Erro ao salvar nome!", Toast.LENGTH_SHORT).show();
@@ -69,6 +67,44 @@ public class AreaAluno extends AppCompatActivity {
                     .setNegativeButton("Cancelar", null)
                     .show();
 
+        });
+
+        btnNovaTarefa.setOnClickListener(v ->{
+            EditText tituloTarefa = new EditText(this);
+            tituloTarefa.setHint("Título da tarefa");
+            tituloTarefa.setTextAlignment(TEXT_ALIGNMENT_CENTER);
+
+            EditText descricaoTarefa = new EditText(this);
+            descricaoTarefa.setHint("Descrição da tarefa");
+            descricaoTarefa.setTextAlignment(TEXT_ALIGNMENT_CENTER);
+
+            new AlertDialog.Builder(this).setTitle("Adicionar nova tarefa")
+                    .setView(tituloTarefa)
+                    .setPositiveButton("Proximo", (dialog, which) ->{
+                        titulo = tituloTarefa.toString().trim();
+                        if(!titulo.isEmpty()){
+                            new AlertDialog.Builder(this).setTitle("Descrição da Tarefa")
+                                    .setView(descricaoTarefa)
+                                    .setPositiveButton("Salvar tarefa", (dialogD, whichD) ->{
+                                        descricao = descricaoTarefa.toString().trim();
+                                    })
+                                    .setNegativeButton("Cancelar", null)
+                                    .show();
+                        }
+                    })
+                    .setNegativeButton("Cancelar", null)
+                    .show();
+            });
+
+
+        btnVoltarTelaMod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AreaAluno.this, TelaMod.class);
+                intent.putExtra("pularVerificacao", true);
+                startActivity(intent);
+                finish();
+            }
         });
     };
 
@@ -84,13 +120,11 @@ public class AreaAluno extends AppCompatActivity {
             valores.put("id_aluno", 1);
             bd.insert("alunos", null, valores);
         }
-
         cursor.close();
         bd.close();
 
     }
     private void carregarDadosAluno(){
-
         SQLiteDatabase bd = bancoDados.getReadableDatabase();
         Cursor cursor = bd.rawQuery("SELECT nomeAluno FROM ALUNOS WHERE id_aluno = 1", null);
 
@@ -98,6 +132,6 @@ public class AreaAluno extends AppCompatActivity {
             String nomeSalvo = cursor.getString(0);
             txtNomeAluno.setText(nomeSalvo);
         }
-
+        cursor.close();
     }
 }

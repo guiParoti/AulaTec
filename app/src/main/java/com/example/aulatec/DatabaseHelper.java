@@ -31,7 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "id_professor INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nomeProf TEXT," +
                 "emailProf TEXT)");
-        // Cria a tabela de aulas e as suas respectivas colunas
+        // Cria a tabela de aulas
         bd.execSQL("CREATE TABLE aulas(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "diaSemana INTEGER," +
