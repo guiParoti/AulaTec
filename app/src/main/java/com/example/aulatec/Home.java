@@ -40,9 +40,6 @@ public class Home extends AppCompatActivity {
         TextView txtDia = findViewById(R.id.txtdiaSem);
         TextView linkNsa = findViewById(R.id.txtLinkNsa);
 
-//      Button btnProf = findViewById(R.id.btnListProf);
-//      Button btnAulas = findViewById(R.id.btnVerAulas);
-//      Button btnRecomendacoes = findViewById(R.id.btnRecomendacoes);
 
         BottomNavigationView barraNavegacao = findViewById(R.id.bottom_navigation);
         barraNavegacao.setSelectedItemId(R.id.nav_home);
@@ -111,31 +108,6 @@ public class Home extends AppCompatActivity {
         };
 
         linkNsa.setOnClickListener(abrirNsa);
-
-//        btnProf.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(Home.this, ListaProf.class);
-//                startActivity(intent);
-//            }
-//        });
-
-//        btnAulas.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(Home.this, ListaAulas.class);
-//                intent.putExtra("id_modulo", idModulo);
-//                startActivity(intent);
-//            }
-//        });
-
-//        btnRecomendacoes.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(Home.this, EscolherRecomendacoes.class);
-//                startActivity(intent);
-//            }
-//        });
 
         // Percorre o banco selecionando o nome e os horarios das aulas com base no dia da semana e modulo
         // Atualização agora faz o SELECT especificando de qual tabela é, a. da tabela de aulas e p. da tabela de professores
@@ -217,7 +189,6 @@ public class Home extends AppCompatActivity {
         cursor.close();
         bd.close();
 
-
 // Define o dia da semana no TextView txtDia
         switch(diaSemana){
             case 2:
@@ -242,9 +213,5 @@ public class Home extends AppCompatActivity {
                 txtDia.setText("Domingo");
                 break;
         }
-
-
-
-
     }
 }

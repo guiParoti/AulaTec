@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -59,6 +61,9 @@ public class AreaAluno extends AppCompatActivity {
         bancoDados = new DatabaseHelper(this);
         carregarDadosAluno();
         carregarTarefas();
+
+        aplicarCorTurma(turma, btnEditar, btnNovaTarefa, btnVoltarTelaMod);
+
 
         btnEditar.setOnClickListener(v ->{;
             EditText nome = new EditText(this);
@@ -238,5 +243,26 @@ public class AreaAluno extends AppCompatActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaTarefas);
         listaDeTarefas.setAdapter(adapter);
+    }
+
+    private void aplicarCorTurma(String turma, Button btnEditar, Button btnNovaTarefa, Button btnVoltarMod){
+
+        if(turma == null){
+            return;
+        }
+
+        int cor;
+        if(turma.equals("A")){
+            cor = ContextCompat.getColor(this, R.color.turmaA);
+        }else if(turma.equals("B")){
+            cor = ContextCompat.getColor(this, R.color.turmaB);
+        }else{
+            return;
+        }
+
+        Button[] botoes = {btnEditar, btnNovaTarefa, btnVoltarMod};
+        for(Button botao : botoes){
+            botao.setBackgroundTintList(ColorStateList.valueOf(cor));
+        }
     }
 }

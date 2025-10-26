@@ -79,8 +79,6 @@
         android:layout_weight="1"
         android:divider="#CCCCCC"
         android:dividerHeight="1dp"
-        android:paddingTop="40dp"
-        android:paddingBottom="110dp"
         android:background="@android:color/white" />
 
     <com.google.android.material.button.MaterialButton

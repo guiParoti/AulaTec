@@ -1,5 +1,7 @@
 package com.example.aulatec;
 
+import static android.view.View.TEXT_ALIGNMENT_CENTER;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -64,6 +66,8 @@ public class ListaProf extends AppCompatActivity {
 
             }else if(id == R.id.nav_aluno){
                 Intent intent = new Intent(ListaProf.this, AreaAluno.class);
+                intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;

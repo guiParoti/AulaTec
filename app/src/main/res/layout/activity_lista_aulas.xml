@@ -10,7 +10,7 @@
         android:id="@+id/listaAulas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="40dp"
+        android:paddingTop="50dp"
         android:paddingBottom="110dp" /> <!-- espaço para a barra -->
 
     <!-- Barra de navegação inferior -->
