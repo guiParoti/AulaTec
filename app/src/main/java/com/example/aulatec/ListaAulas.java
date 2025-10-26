@@ -67,7 +67,7 @@ public class ListaAulas extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 return true;
 
-            }else if(id == R.id.nav_modulo){
+            }else if(id == R.id.nav_aluno){
                 Intent intent = new Intent(ListaAulas.this, TelaMod.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);

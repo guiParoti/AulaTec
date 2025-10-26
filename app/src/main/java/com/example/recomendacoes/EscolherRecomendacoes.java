@@ -8,6 +8,7 @@ import android.widget.Button;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.aulatec.AreaAluno;
 import com.example.aulatec.Home;
 import com.example.aulatec.ListaAulas;
 import com.example.aulatec.ListaProf;
@@ -64,8 +65,8 @@ public class EscolherRecomendacoes extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 return true;
 
-            }else if(id == R.id.nav_modulo){
-                Intent intent = new Intent(EscolherRecomendacoes.this, TelaMod.class);
+            }else if(id == R.id.nav_aluno){
+                Intent intent = new Intent(EscolherRecomendacoes.this, AreaAluno.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;

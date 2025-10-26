@@ -74,8 +74,8 @@ public class DetalhesProf extends AppCompatActivity {
                 intent.putExtra("turma", turma);
                 startActivity(intent);
                 return true;
-            }else if(id == R.id.nav_modulo) {
-                Intent intent = new Intent(DetalhesProf.this, TelaMod.class);
+            }else if(id == R.id.nav_aluno) {
+                Intent intent = new Intent(DetalhesProf.this, AreaAluno.class);
                 startActivity(intent);
                 return true;
             }

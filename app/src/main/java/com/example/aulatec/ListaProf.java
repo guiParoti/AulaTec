@@ -62,8 +62,8 @@ public class ListaProf extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 return true;
 
-            }else if(id == R.id.nav_modulo){
-                Intent intent = new Intent(ListaProf.this, TelaMod.class);
+            }else if(id == R.id.nav_aluno){
+                Intent intent = new Intent(ListaProf.this, AreaAluno.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;

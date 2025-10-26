@@ -3,6 +3,7 @@ package com.example.recomendacoes;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.aulatec.AreaAluno;
 import com.example.aulatec.Home;
 import com.example.aulatec.ListaAulas;
 import com.example.aulatec.ListaProf;
@@ -37,8 +38,8 @@ public class CursosGratuitos extends AppCompatActivity {
 
         barraNavegacao.setOnItemSelectedListener( item -> {
             int id = item.getItemId();
-            if (id == R.id.nav_modulo) {
-                Intent intent = new Intent(CursosGratuitos.this, TelaMod.class);
+            if (id == R.id.nav_aluno) {
+                Intent intent = new Intent(CursosGratuitos.this, AreaAluno.class);
                 intent.putExtra("id_modulo", idModulo);
                 intent.putExtra("turma", turma);
                 startActivity(intent);

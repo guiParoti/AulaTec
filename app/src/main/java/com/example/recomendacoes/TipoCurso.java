@@ -8,6 +8,7 @@ import android.widget.Button;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.aulatec.AreaAluno;
 import com.example.aulatec.Home;
 import com.example.aulatec.ListaAulas;
 import com.example.aulatec.ListaProf;
@@ -54,8 +55,8 @@ public class TipoCurso extends AppCompatActivity {
 
         barraNavegacao.setOnItemSelectedListener( item -> {
             int id = item.getItemId();
-            if (id == R.id.nav_modulo) {
-                Intent intent = new Intent(TipoCurso.this, TelaMod.class);
+            if (id == R.id.nav_aluno) {
+                Intent intent = new Intent(TipoCurso.this, AreaAluno.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
