@@ -24,6 +24,16 @@
             android:scaleType="centerCrop"
             android:src="@android:drawable/ic_menu_gallery" />
 
+        <TextView
+            android:id="@+id/txtNomeAluno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Nome do Aluno"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnEditarPerfil"
             android:layout_width="wrap_content"
@@ -34,16 +44,6 @@
             app:icon="@drawable/ic_editar"
             app:iconPadding="8dp"
             app:iconTint="@android:color/white" />
-
-        <TextView
-            android:id="@+id/txtNomeAluno"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Nome do Aluno"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtTarefas"

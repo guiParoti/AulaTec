@@ -9,18 +9,25 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.BitmapCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -29,16 +36,38 @@ import com.example.recomendacoes.EscolherRecomendacoes;
 import com.example.recomendacoes.RFilmes;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class AreaAluno extends AppCompatActivity {
 
     private DatabaseHelper bancoDados;
+
+    private static final int PEGAR_PEDIDO_DE_IMAGEM = 1;
+    private ImageView capaAluno;
     private TextView txtNomeAluno;
     private String titulo;
     private String descricao;
-
     private ListView listaDeTarefas;
+
+
+    @Override
+    protected void onActivityResult(int pedidoDeCodigo, int resultadoDeCodigo, @Nullable Intent data){
+        super.onActivityResult(pedidoDeCodigo, resultadoDeCodigo, data);
+
+        if(pedidoDeCodigo == PEGAR_PEDIDO_DE_IMAGEM && resultadoDeCodigo == RESULT_OK && data != null){
+            Uri imagemUri = data.getData();
+            try{
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagemUri);
+                capaAluno.setImageBitmap(bitmap);
+                salvarImagemAluno(bitmap);
+            }catch (IOException e){
+                e.printStackTrace();
+                Toast.makeText(this, "Erro ao carregar imagem!", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +80,7 @@ public class AreaAluno extends AppCompatActivity {
 
         Button btnEditar = findViewById(R.id.btnEditarPerfil);
         Button btnNovaTarefa = findViewById(R.id.btnNovaTarefa);
+        capaAluno = findViewById(R.id.capaAluno);
         txtNomeAluno = findViewById(R.id.txtNomeAluno);
         listaDeTarefas = findViewById(R.id.listaTarefas);
         Button btnVoltarTelaMod = findViewById(R.id.btnTrocarModulo);
@@ -64,6 +94,11 @@ public class AreaAluno extends AppCompatActivity {
 
         aplicarCorTurma(turma, btnEditar, btnNovaTarefa, btnVoltarTelaMod);
 
+
+        capaAluno.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, PEGAR_PEDIDO_DE_IMAGEM);
+        });
 
         btnEditar.setOnClickListener(v ->{;
             EditText nome = new EditText(this);
@@ -89,6 +124,7 @@ public class AreaAluno extends AppCompatActivity {
                     })
                     .setNegativeButton("Cancelar", null)
                     .show();
+
 
         });
 
@@ -170,6 +206,34 @@ public class AreaAluno extends AppCompatActivity {
         });
     };
 
+    private void salvarImagemAluno(Bitmap bitmap){
+        try{
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            byte[] imagemBytes = stream.toByteArray();
+
+            SQLiteDatabase bd = bancoDados.getWritableDatabase();
+            ContentValues valores = new ContentValues();
+            valores.put("fotoAluno", imagemBytes);
+
+            // Já atualiza a foto no banco pra ficar sempre apenas uma foto salva
+            Cursor cursor = bd.rawQuery("SELECT * FROM alunos WHERE id_aluno = 1", null);
+            if(cursor.moveToFirst()){
+                bd.update("alunos", valores, "id_aluno = ?", new String[]{"1"}); // Já existir um registro no banco, atualiza com o novo
+            }else{
+                valores.put("id_aluno", 1);
+                bd.insert("alunos", null, valores);        // Senão insere no banco na tabela do aluno de id 1
+            }
+            cursor.close();
+            bd.close();
+
+            Toast.makeText(this, "Imagem salva!", Toast.LENGTH_SHORT).show();
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(this, "Erro ao salvar imagem", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private void salvarNomeAluno(String nome){
         try {
             SQLiteDatabase bd = bancoDados.getWritableDatabase();
@@ -216,11 +280,17 @@ public class AreaAluno extends AppCompatActivity {
     }
     private void carregarDadosAluno(){
         SQLiteDatabase bd = bancoDados.getReadableDatabase();
-        Cursor cursor = bd.rawQuery("SELECT nomeAluno FROM ALUNOS WHERE id_aluno = 1", null);
+        Cursor cursor = bd.rawQuery("SELECT nomeAluno, fotoAluno FROM ALUNOS WHERE id_aluno = 1", null);
 
         if(cursor.moveToFirst()){
             String nomeSalvo = cursor.getString(0);
             txtNomeAluno.setText(nomeSalvo);
+
+            byte[] imagemBytes = cursor.getBlob(1);
+            if(imagemBytes != null){
+                Bitmap bitmap = BitmapFactory.decodeByteArray(imagemBytes, 0, imagemBytes.length);
+                capaAluno.setImageBitmap(bitmap);
+            }
         }
         cursor.close();
     }
