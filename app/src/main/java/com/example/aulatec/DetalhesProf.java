@@ -11,9 +11,6 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.recomendacoes.EscolherRecomendacoes;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -76,6 +73,8 @@ public class DetalhesProf extends AppCompatActivity {
                 return true;
             }else if(id == R.id.nav_aluno) {
                 Intent intent = new Intent(DetalhesProf.this, AreaAluno.class);
+                intent.putExtra("id_modulo", idModulo);
+                intent.putExtra("turma", turma);
                 startActivity(intent);
                 return true;
             }

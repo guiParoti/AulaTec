@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,6 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AulaTec">
+        <activity
+            android:name=".DetalhesTarefas"
+            android:exported="false" />
         <activity
             android:name=".AreaAluno"
             android:exported="false" />
@@ -33,7 +37,7 @@
             android:theme="@style/Theme.AulaTec" />
         <activity
             android:name=".DetalhesProf"
-            android:exported="false" />>
+            android:exported="false" />
         <activity
             android:name="com.example.recomendacoes.TipoCurso"
             android:exported="false" />
