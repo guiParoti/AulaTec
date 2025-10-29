@@ -82,8 +82,12 @@ public class ListaProf extends AppCompatActivity {
             DatabaseHelper bancoHelper = new DatabaseHelper(this);
             SQLiteDatabase bancoDados = bancoHelper.getReadableDatabase();
 
-            Cursor cursor = bancoDados.rawQuery("SELECT nomeProf, emailProf " +
-                    "FROM professores", null);
+            Cursor cursor = bancoDados.rawQuery("SELECT DISTINCT p.nomeProf, p.emailProf " +
+                    "FROM professores p " +
+                    "JOIN modulos m ON a.id_modulo = m.id_modulo " +
+                    "JOIN aulas a ON p.id_professor = a.id_professor " +
+                    "WHERE a.id_modulo = ?",
+                     new String[]{String.valueOf(idModulo)});
 
             ArrayList<String> lista = new ArrayList<>();
             ArrayList<String> nomes = new ArrayList<>();

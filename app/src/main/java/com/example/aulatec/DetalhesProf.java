@@ -32,6 +32,7 @@ public class DetalhesProf extends AppCompatActivity {
         String turma =  getIntent().getStringExtra("turma");
 
         BottomNavigationView barraNavegacao = findViewById(R.id.bottom_navigation);
+        barraNavegacao.setSelectedItemId(R.id.nav_emails);
 
         TextView txtNome = findViewById(R.id.txtNome);
         LinearLayout containerProfessor = findViewById(R.id.conteinerProf);
