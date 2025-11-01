@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,6 +51,9 @@ public class AreaAluno extends AppCompatActivity {
     private String titulo;
     private String descricao;
     private ListView listaDeTarefas;
+    private ArrayList<String> listaTarefasValores;
+    private ArrayList<Integer> listaTarefasIds;
+
 
 
     @Override
@@ -156,6 +160,33 @@ public class AreaAluno extends AppCompatActivity {
                     .show();
         });
 
+
+        listaDeTarefas.setOnItemClickListener((parent, view, position, id) ->{
+            int idTarefaSelecionada = listaTarefasIds.get(position);
+            String tituloTarefa = listaTarefasValores.get(position);
+
+            String[] opcoesDialogBuilder = {"Editar tarefa","Excluir tarefa"};
+
+
+            new AlertDialog.Builder(this).setTitle("Escolha uma opção")
+                    .setItems(opcoesDialogBuilder, (dialog, which) -> {
+                        if(which == 0){
+                           editarTarefa(idTarefaSelecionada);
+                        }else if(which == 1){
+                            new AlertDialog.Builder(this).setTitle("Excluir tarefa")
+                            .setMessage("Deseja realmente excluir essa tarefa \"" + tituloTarefa + "\"?")
+                                    .setPositiveButton("Sim", (d, w) -> {
+                                        deletarTarefa(idTarefaSelecionada);
+                                        carregarTarefas();
+                                    })
+                                    .setNegativeButton("Não", null)
+                                    .show();;
+
+                        }
+                    }).setNegativeButton("Cancelar", null)
+                    .show();
+
+        });
 
         btnVoltarTelaMod.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -278,6 +309,71 @@ public class AreaAluno extends AppCompatActivity {
             a.printStackTrace();
         }
     }
+
+    private void deletarTarefa(int idTarefa){
+        SQLiteDatabase bd =  bancoDados.getWritableDatabase();
+        int linhasAfetadas = bd.delete("tarefas", "id_tarefa = ?", new String[]{String.valueOf(idTarefa)});
+
+        if(linhasAfetadas > 0){
+            Toast.makeText(this, "Tarefa deletada!", Toast.LENGTH_SHORT).show();
+        }else{
+            System.out.println("Não é pra dar else não!");
+        }
+        bd.close();
+    }
+
+    private void editarTarefa(int idTarefa){
+        SQLiteDatabase bd = bancoDados.getWritableDatabase();
+        Cursor cursor = bd.rawQuery("SELECT tituloTarefa, descricaoTarefa FROM tarefas WHERE id_tarefa = ?", new String[]{String.valueOf(idTarefa)});
+
+        if(cursor.moveToFirst()){
+            String tituloTarefaAtual = cursor.getString(0);
+            String descricaoTarefaAtual = cursor.getString(1);
+
+            EditText Caixatitulo = new EditText(this);
+            Caixatitulo.setTextAlignment(TEXT_ALIGNMENT_CENTER);
+            Caixatitulo.setText(tituloTarefaAtual);
+            Caixatitulo.setHint("Titulo da tarefa");
+
+            EditText CaixaDescricao = new EditText(this);
+            CaixaDescricao.setTextAlignment(TEXT_ALIGNMENT_CENTER);
+            CaixaDescricao.setText(descricaoTarefaAtual);
+            CaixaDescricao.setHint("Descrição da tarefa");
+
+            ContentValues valores = new ContentValues();
+
+            new AlertDialog.Builder(this).setTitle("Titulo da tarefa")
+                    .setView(Caixatitulo)
+                    .setPositiveButton("Proximo", (dialog, which) -> {
+                            String novoTitulo = Caixatitulo.getText().toString().trim();
+                        if(!novoTitulo.isEmpty()) {
+                            valores.put("tituloTarefa", novoTitulo);
+
+                            new AlertDialog.Builder(this).setTitle("Descrição da tarefa")
+                                    .setView(CaixaDescricao).setPositiveButton("Atualizar tarefa", (di, wi) -> {
+                                        String novaDescricao = CaixaDescricao.getText().toString().trim();
+                                        if(!novaDescricao.isEmpty()) {
+                                            valores.put("descricaoTarefa", novaDescricao);
+
+                                            bd.update("tarefas", valores, "id_tarefa = ?", new String[]{String.valueOf(idTarefa)});
+                                            carregarTarefas();
+                                            Toast.makeText(this, "Tarefa atualizada", Toast.LENGTH_SHORT).show();
+
+                                        }else{
+                                            Toast.makeText(this, "Por-favor, insira uma descrição válida",Toast.LENGTH_SHORT).show();
+                                        }
+                                    }).setNegativeButton("Cancelar", null)
+                                    .show();
+
+                        }else{
+                            Toast.makeText(this, "Por-favor, insira um titulo válido", Toast.LENGTH_SHORT).show();
+                        }
+                    }).setNegativeButton("Cancelar", null)
+                    .show();
+        }
+        cursor.close();
+        bd.close();
+    }
     private void carregarDadosAluno(){
         SQLiteDatabase bd = bancoDados.getReadableDatabase();
         Cursor cursor = bd.rawQuery("SELECT nomeAluno, fotoAluno FROM ALUNOS WHERE id_aluno = 1", null);
@@ -292,26 +388,31 @@ public class AreaAluno extends AppCompatActivity {
                 capaAluno.setImageBitmap(bitmap);
             }
         }
+        bd.close();
         cursor.close();
     }
 
     private void carregarTarefas(){
         SQLiteDatabase bd = bancoDados.getReadableDatabase();
-        Cursor cursor = bd.rawQuery("SELECT tituloTarefa, descricaoTarefa FROM tarefas WHERE id_aluno = 1", null);
+        Cursor cursor = bd.rawQuery("SELECT id_tarefa, tituloTarefa, descricaoTarefa FROM tarefas WHERE id_aluno = 1", null);
 
-        ArrayList<String> listaTarefas = new ArrayList<>();
+        listaTarefasIds = new ArrayList<>();
+        listaTarefasValores = new ArrayList<>();
 
         if(cursor.moveToFirst()){
             do {
-                String tituloTarefa = cursor.getString(0);
-                String descricaoTarefa = cursor.getString(1);
-                listaTarefas.add(tituloTarefa + "\n" + descricaoTarefa);
+                int idTarefa = cursor.getInt(0);
+                String tituloTarefa = cursor.getString(1);
+                String descricaoTarefa = cursor.getString(2);
+
+                listaTarefasIds.add(idTarefa);
+                listaTarefasValores.add(tituloTarefa + "\n" + descricaoTarefa);
             }while(cursor.moveToNext());
         }
         cursor.close();
         bd.close();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaTarefas);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaTarefasValores);
         listaDeTarefas.setAdapter(adapter);
     }
 
