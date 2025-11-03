@@ -165,7 +165,7 @@ public class AreaAluno extends AppCompatActivity {
             int idTarefaSelecionada = listaTarefasIds.get(position);
             String tituloTarefa = listaTarefasValores.get(position);
 
-            String[] opcoesDialogBuilder = {"Editar tarefa","Excluir tarefa"};
+            String[] opcoesDialogBuilder = {"Editar tarefa","Excluir tarefa", "Marcar como concluída"};
 
 
             new AlertDialog.Builder(this).setTitle("Escolha uma opção")
