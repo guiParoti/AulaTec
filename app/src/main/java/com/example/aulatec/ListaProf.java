@@ -15,6 +15,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.barra_navegacao.BarraDeNavegacao;
 import com.example.recomendacoes.EscolherRecomendacoes;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -31,52 +32,11 @@ public class ListaProf extends AppCompatActivity {
         String turma = getIntent().getStringExtra("turma");
 
         exibirLista(idModulo, turma);
+
         BottomNavigationView barraNavegacao = findViewById(R.id.bottomNavigationView);
         barraNavegacao.setSelectedItemId(R.id.nav_emails);
-
-        barraNavegacao.setOnItemSelectedListener(item -> {
-            int id = item.getItemId(); // pega o id do item clicado
-            if (id == R.id.nav_emails) {
-                // já está nos contatos dos professores, não faz nada
-                return true;
-
-            } else if (id == R.id.nav_home) {
-                Intent intent = new Intent(ListaProf.this, Home.class);
-                intent.putExtra("id_modulo", idModulo);
-                intent.putExtra("turma", turma);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
-                return true;
-
-            }else if(id == R.id.nav_aulas){
-                Intent intent = new Intent(ListaProf.this, ListaAulas.class);
-                intent.putExtra("id_modulo", idModulo);
-                intent.putExtra("turma", turma);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
-                return true;
-
-            }else if(id == R.id.nav_recomendacoes){
-                Intent intent = new Intent(ListaProf.this, EscolherRecomendacoes.class);
-                intent.putExtra("id_modulo", idModulo);
-                intent.putExtra("turma", turma);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
-                return true;
-
-            }else if(id == R.id.nav_aluno){
-                Intent intent = new Intent(ListaProf.this, AreaAluno.class);
-                intent.putExtra("id_modulo", idModulo);
-                intent.putExtra("turma", turma);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
-                return true;
-            }
-            return false;
-        });
-
+        BarraDeNavegacao.configurarNavegacao(this, barraNavegacao, idModulo, turma);
     }
-
     public void exibirLista(int idModulo, String turma){
         try{
             DatabaseHelper bancoHelper = new DatabaseHelper(this);

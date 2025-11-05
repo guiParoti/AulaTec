@@ -1,6 +1,7 @@
 package com.example.aulatec;
 
 import static android.view.View.TEXT_ALIGNMENT_CENTER;
+import static android.view.View.VISIBLE;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
@@ -33,6 +34,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.barra_navegacao.BarraDeNavegacao;
 import com.example.recomendacoes.EscolherRecomendacoes;
 import com.example.recomendacoes.RFilmes;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -48,6 +50,7 @@ public class AreaAluno extends AppCompatActivity {
     private static final int PEGAR_PEDIDO_DE_IMAGEM = 1;
     private ImageView capaAluno;
     private TextView txtNomeAluno;
+    private TextView txtEmailInstitucional;
     private String titulo;
     private String descricao;
     private ListView listaDeTarefas;
@@ -86,11 +89,14 @@ public class AreaAluno extends AppCompatActivity {
         Button btnNovaTarefa = findViewById(R.id.btnNovaTarefa);
         capaAluno = findViewById(R.id.capaAluno);
         txtNomeAluno = findViewById(R.id.txtNomeAluno);
+        txtEmailInstitucional = findViewById(R.id.txtEmailInstitucional);
         listaDeTarefas = findViewById(R.id.listaTarefas);
         Button btnVoltarTelaMod = findViewById(R.id.btnTrocarModulo);
-        BottomNavigationView barraNavegacao = findViewById(R.id.bottom_navigation);
 
+
+        BottomNavigationView barraNavegacao = findViewById(R.id.bottom_navigation);
         barraNavegacao.setSelectedItemId(R.id.nav_aluno);
+        BarraDeNavegacao.configurarNavegacao(this, barraNavegacao, idModulo, turma);
 
         bancoDados = new DatabaseHelper(this);
         carregarDadosAluno();
@@ -108,6 +114,10 @@ public class AreaAluno extends AppCompatActivity {
             EditText nome = new EditText(this);
             nome.setHint("Digite seu nome");
             nome.setTextAlignment(TEXT_ALIGNMENT_CENTER);
+
+            EditText emailInstitucional = new EditText(this);
+            emailInstitucional.setHint("Salve aqui seu email institucional");
+            emailInstitucional.setTextAlignment(TEXT_ALIGNMENT_CENTER);
 
             new AlertDialog.Builder(this).setTitle("Editar nome").setView(nome)
                     .setPositiveButton("Salvar", (dialog, which) -> {
@@ -129,7 +139,19 @@ public class AreaAluno extends AppCompatActivity {
                     .setNegativeButton("Cancelar", null)
                     .show();
 
+            new AlertDialog.Builder(this).setTitle("Editar email institucional").setView(emailInstitucional).setPositiveButton("Salvar", (d, w) ->{
+                String novoEmailInstitucional = emailInstitucional.getText().toString().trim();
 
+                if(novoEmailInstitucional.contains("@.sp.gov")){
+                    txtEmailInstitucional.setText(novoEmailInstitucional);
+                    txtEmailInstitucional.setVisibility(VISIBLE);
+                    Toast.makeText(this, "Email institucional salvo", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(this, "Por-favor insira um email válido", Toast.LENGTH_SHORT).show();
+                }
+            })
+                    .setNegativeButton("Cancelar", null)
+                    .show();
         });
 
         btnNovaTarefa.setOnClickListener(v ->{
@@ -200,43 +222,7 @@ public class AreaAluno extends AppCompatActivity {
             }
         });
 
-        barraNavegacao.setOnItemSelectedListener( item -> {
-            int id = item.getItemId();
-            if (id == R.id.nav_aluno) {
-                return true;
-            }else if(id == R.id.nav_home){
-                Intent intent = new Intent(AreaAluno.this, Home.class);
-                intent.putExtra("id_modulo", idModulo);
-                intent.putExtra("turma", turma);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
-                return true;
-            }else if(id == R.id.nav_emails){
-                Intent intent = new Intent(AreaAluno.this, ListaProf.class);
-                intent.putExtra("id_modulo", idModulo);
-                intent.putExtra("turma", turma);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
-                return true;
-            }else if(id == R.id.nav_aulas){
-                Intent intent = new Intent(AreaAluno.this, ListaAulas.class);
-                intent.putExtra("id_modulo", idModulo);
-                intent.putExtra("turma", turma);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
-                return true;
-            }else if(id == R.id.nav_recomendacoes){
-                Intent intent = new Intent(AreaAluno.this, EscolherRecomendacoes.class);
-                intent.putExtra("id_modulo", idModulo);
-                intent.putExtra("turma", turma);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
-                return true;
-            }
-            return false;
-        });
     };
-
     private void salvarImagemAluno(Bitmap bitmap){
         try{
             ByteArrayOutputStream stream = new ByteArrayOutputStream();

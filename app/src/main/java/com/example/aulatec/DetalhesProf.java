@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.barra_navegacao.BarraDeNavegacao;
 import com.example.recomendacoes.EscolherRecomendacoes;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -33,6 +34,7 @@ public class DetalhesProf extends AppCompatActivity {
 
         BottomNavigationView barraNavegacao = findViewById(R.id.bottom_navigation);
         barraNavegacao.setSelectedItemId(R.id.nav_emails);
+        BarraDeNavegacao.configurarNavegacao(this, barraNavegacao, idModulo, turma);
 
         TextView txtNome = findViewById(R.id.txtNome);
         LinearLayout containerProfessor = findViewById(R.id.conteinerProf);
@@ -44,44 +46,6 @@ public class DetalhesProf extends AppCompatActivity {
         txtNome.setTextSize(20);
         txtNome.setTextAlignment(TEXT_ALIGNMENT_CENTER);
         txtNome.setBackgroundResource(android.R.drawable.dialog_holo_light_frame);
-
-
-        barraNavegacao.setOnItemSelectedListener(item -> {
-            int id = item.getItemId();
-            if(id == R.id.nav_aulas){
-                Intent intent = new Intent(DetalhesProf.this, ListaAulas.class);
-                intent.putExtra("id_modulo", idModulo);
-                intent.putExtra("turma", turma);
-                startActivity(intent);
-                return true;
-            }else if(id == R.id.nav_recomendacoes){
-                Intent intent = new Intent(DetalhesProf.this, EscolherRecomendacoes.class);
-                intent.putExtra("id_modulo", idModulo);
-                intent.putExtra("turma", turma);
-                startActivity(intent);
-                return true;
-            }else if(id == R.id.nav_home) {
-                Intent intent = new Intent(DetalhesProf.this, Home.class);
-                intent.putExtra("id_modulo", idModulo);
-                intent.putExtra("turma", turma);
-                startActivity(intent);
-                return true;
-            }else if(id == R.id.nav_emails) {
-                Intent intent = new Intent(DetalhesProf.this, ListaProf.class);
-                intent.putExtra("id_modulo", idModulo);
-                intent.putExtra("turma", turma);
-                startActivity(intent);
-                return true;
-            }else if(id == R.id.nav_aluno) {
-                Intent intent = new Intent(DetalhesProf.this, AreaAluno.class);
-                intent.putExtra("id_modulo", idModulo);
-                intent.putExtra("turma", turma);
-                startActivity(intent);
-                return true;
-            }
-
-            return false;
-        });
 
         Cursor cursor = db.rawQuery(
                 "SELECT a.nomeAula, a.diaSemana, a.lab from aulas a " +

@@ -15,6 +15,7 @@ import com.example.aulatec.ListaAulas;
 import com.example.aulatec.ListaProf;
 import com.example.aulatec.R;
 import com.example.aulatec.TelaMod;
+import com.example.barra_navegacao.BarraDeNavegacao;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class CursosPagos extends AppCompatActivity {
@@ -29,46 +30,7 @@ public class CursosPagos extends AppCompatActivity {
 
         BottomNavigationView barraNavegacao = findViewById(R.id.bottom_navigation);
         barraNavegacao.setSelectedItemId(R.id.nav_recomendacoes);
-
-
-        barraNavegacao.setOnItemSelectedListener( item -> {
-            int id = item.getItemId();
-            if (id == R.id.nav_aluno) {
-                Intent intent = new Intent(CursosPagos.this, AreaAluno.class);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
-                return true;
-            }else if(id == R.id.nav_home){
-                Intent intent = new Intent(CursosPagos.this, Home.class);
-                intent.putExtra("id_modulo", idModulo);
-                intent.putExtra("turma", turma);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
-                return true;
-            }else if(id == R.id.nav_emails){
-                Intent intent = new Intent(CursosPagos.this, ListaProf.class);
-                intent.putExtra("id_modulo", idModulo);
-                intent.putExtra("turma", turma);intent.putExtra("turma", turma);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
-                return true;
-            }else if(id == R.id.nav_aulas){
-                Intent intent = new Intent(CursosPagos.this, ListaAulas.class);
-                intent.putExtra("id_modulo", idModulo);
-                intent.putExtra("turma", turma);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
-                return true;
-            }else if(id == R.id.nav_recomendacoes){
-                Intent intent = new Intent(CursosPagos.this, EscolherRecomendacoes.class);
-                intent.putExtra("id_modulo", idModulo);
-                intent.putExtra("turma", turma);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
-                return true;
-            }
-            return false;
-        });
+        BarraDeNavegacao.configurarNavegacao(this, barraNavegacao, idModulo, turma);
 
     }
 }

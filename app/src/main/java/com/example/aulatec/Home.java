@@ -15,6 +15,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.barra_navegacao.BarraDeNavegacao;
 import com.example.funcoes_curiosidades.FuncaoCuriosidade;
 import com.example.recomendacoes.EscolherRecomendacoes;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -43,6 +44,7 @@ public class Home extends AppCompatActivity {
 
         BottomNavigationView barraNavegacao = findViewById(R.id.bottom_navigation);
         barraNavegacao.setSelectedItemId(R.id.nav_home);
+        BarraDeNavegacao.configurarNavegacao(this, barraNavegacao, idModulo, turma);
 
         TextView txtCuriosidade = findViewById(R.id.txtCuriosidade);
         FuncaoCuriosidade curiosidade1 = new FuncaoCuriosidade();
@@ -52,46 +54,7 @@ public class Home extends AppCompatActivity {
         txtCuriosidade.setBackgroundResource(android.R.drawable.dialog_holo_light_frame);
         txtCuriosidade.setPadding(50,50,50,50);
 
-            barraNavegacao.setOnItemSelectedListener(item -> {
-                int id = item.getItemId(); // pega o id do item clicado
-                if (id == R.id.nav_home) {
-                    // já está no Home, não faz nada
-                    return true;
 
-                } else if (id == R.id.nav_aulas) {
-                    Intent intent = new Intent(Home.this, ListaAulas.class);
-                    intent.putExtra("id_modulo", idModulo);
-                    intent.putExtra("turma", turma);
-                    startActivity(intent);
-                    overridePendingTransition(0, 0);
-                    return true;
-
-                }else if(id == R.id.nav_emails){
-                    Intent intent = new Intent(Home.this, ListaProf.class);
-                    intent.putExtra("id_modulo", idModulo);
-                    intent.putExtra("turma", turma);
-                    startActivity(intent);
-                    overridePendingTransition(0, 0);
-                    return true;
-
-                }else if(id == R.id.nav_recomendacoes){
-                    Intent intent = new Intent(Home.this, EscolherRecomendacoes.class);
-                    intent.putExtra("id_modulo", idModulo);
-                    intent.putExtra("turma", turma);
-                    startActivity(intent);
-                    overridePendingTransition(0, 0);
-                    return true;
-
-                }else if(id == R.id.nav_aluno){
-                    Intent intent = new Intent(Home.this, AreaAluno.class);
-                    intent.putExtra("id_modulo", idModulo);
-                    intent.putExtra("turma", turma);
-                    startActivity(intent);
-                    overridePendingTransition(0, 0);
-                    return true;
-                }
-                return false;
-            });
 
         // Instancia a classe DatabaseHelper em um objeto pra poder acessar o banco de dados
         DatabaseHelper bdHelper = new DatabaseHelper(this);
