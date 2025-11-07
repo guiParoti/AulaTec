@@ -122,7 +122,7 @@ public class Home extends AppCompatActivity {
                         TextView tvAula = new TextView(this);
                         tvAula.setText(modulo + " " + turma + "\n1°Aula -" + "\n" + aula + " - " + inicio + " até " + fim + "\n" + professor + "\nLab: " + maker); // Define o texto
                         tvAula.setTextSize(16); // Tamanho da fonte do texto;
-                        tvAula.setPadding(16, 16, 16, 16); // Espaçamento interno
+                        tvAula.setPadding(20, 20, 20, 20); // Espaçamento interno
                         tvAula.setBackgroundResource(android.R.drawable.dialog_holo_light_frame); // Uma borda simples
                         tvAula.setTextAlignment(TEXT_ALIGNMENT_CENTER);
                         // Adiciona o TextView no container
@@ -131,7 +131,7 @@ public class Home extends AppCompatActivity {
                         TextView tvAula = new TextView(this);
                         tvAula.setText(modulo + " " + turma + "\n2°Aula -" + "\n" + aula + " - " + inicio + " até " + fim + "\n" + professor + "\nLab: " + maker); // Define o texto
                         tvAula.setTextSize(16); // Tamanho da fonte do texto;
-                        tvAula.setPadding(16, 16, 16, 16); // Espaçamento interno
+                        tvAula.setPadding(20, 20, 20, 20);// Espaçamento interno
                         tvAula.setBackgroundResource(android.R.drawable.dialog_holo_light_frame); // Uma borda simples
                         tvAula.setTextAlignment(TEXT_ALIGNMENT_CENTER);
                         // Adiciona o TextView no container
@@ -144,7 +144,7 @@ public class Home extends AppCompatActivity {
                         TextView tvAula = new TextView(this);
                         tvAula.setText(modulo + " " + turma + "\n1°Aula -" + "\n" + aula + " - " + inicio + " até " + fim + "\n" + professor + "\nLab: " + lab); // Define o texto
                         tvAula.setTextSize(16); // Tamanho da fonte do texto;
-                        tvAula.setPadding(16, 16, 16, 16); // Espaçamento interno
+                        tvAula.setPadding(20, 20, 20, 20); // Espaçamento interno
                         tvAula.setBackgroundResource(android.R.drawable.dialog_holo_light_frame); // Uma borda simples
                         tvAula.setTextAlignment(TEXT_ALIGNMENT_CENTER);
                         // Adiciona o TextView no container
@@ -153,7 +153,7 @@ public class Home extends AppCompatActivity {
                         TextView tvAula = new TextView(this);
                         tvAula.setText(modulo + " " + turma + "\n2°Aula -" + "\n" + aula + " - " + inicio + " até " + fim + "\n" + professor + "\nLab: " + lab); // Define o texto
                         tvAula.setTextSize(16); // Tamanho da fonte do texto;
-                        tvAula.setPadding(16, 16, 16, 16); // Espaçamento interno
+                        tvAula.setPadding(20, 20, 20, 20); // Espaçamento interno
                         tvAula.setBackgroundResource(android.R.drawable.dialog_holo_light_frame); // Uma borda simples
                         tvAula.setTextAlignment(TEXT_ALIGNMENT_CENTER);
                         // Adiciona o TextView no container
@@ -167,7 +167,7 @@ public class Home extends AppCompatActivity {
             TextView tvAula = new TextView(this);
             tvAula.setText("Hoje não tem aula\nAproveite seu final de semana!");
             tvAula.setTextSize(16);
-            tvAula.setPadding(16,16,16,16);
+            tvAula.setPadding(20, 20, 20, 20);
             tvAula.setBackgroundResource(android.R.drawable.dialog_holo_light_frame); // Uma borda simples
             tvAula.setTextAlignment(TEXT_ALIGNMENT_CENTER);
             containerAulas.addView(tvAula);

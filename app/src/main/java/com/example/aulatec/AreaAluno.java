@@ -104,52 +104,55 @@ public class AreaAluno extends AppCompatActivity {
 
         aplicarCorTurma(turma, btnEditar, btnNovaTarefa, btnVoltarTelaMod);
 
-
-        capaAluno.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(intent, PEGAR_PEDIDO_DE_IMAGEM);
-        });
-
         btnEditar.setOnClickListener(v ->{;
+            String[] opcoesDialogBuilder = {"Editar imagem", "Editar nome", "Editar email institucional"};
             EditText nome = new EditText(this);
             nome.setHint("Digite seu nome");
             nome.setTextAlignment(TEXT_ALIGNMENT_CENTER);
 
             EditText emailInstitucional = new EditText(this);
-            emailInstitucional.setHint("Salve aqui seu email institucional");
+            emailInstitucional.setHint("Digite seu email institucional");
             emailInstitucional.setTextAlignment(TEXT_ALIGNMENT_CENTER);
+            
+            new AlertDialog.Builder(this).setTitle("Escolha uma opção")
+                    .setItems(opcoesDialogBuilder, (dialog, which) -> {
 
-            new AlertDialog.Builder(this).setTitle("Editar nome").setView(nome)
-                    .setPositiveButton("Salvar", (dialog, which) -> {
-                        String novoNomeAluno = nome.getText().toString().trim();
-                        if(!novoNomeAluno.isEmpty()){
+                if(which == 0){
+                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(intent, PEGAR_PEDIDO_DE_IMAGEM);
+                }
+
+                else if (which == 1){
                             try {
-                                salvarNomeAluno(novoNomeAluno);
-                                txtNomeAluno.setText(novoNomeAluno);
-                                Toast.makeText(this, "Nome salvo!", Toast.LENGTH_SHORT).show();
-
+                                new AlertDialog.Builder(this).setTitle("Editar nome").setView(nome)
+                                                .setPositiveButton("Salvar", (d, w)-> {
+                                                    String novoNomeAluno = nome.getText().toString().trim();
+                                                    salvarNomeAluno(novoNomeAluno);
+                                                    txtNomeAluno.setText(novoNomeAluno);
+                                                    Toast.makeText(this, "Nome salvo!", Toast.LENGTH_SHORT).show();
+                                                })
+                                        .setNegativeButton("Cancelar", null)
+                                        .show();
                             }catch(Exception a){
                                 Toast.makeText(this, "Erro ao salvar nome!", Toast.LENGTH_SHORT).show();
                             }
-                        }else{
-                            Toast.makeText(this, "Olá, " + novoNomeAluno, Toast.LENGTH_SHORT).show();
                         }
-
-                    })
-                    .setNegativeButton("Cancelar", null)
-                    .show();
-
-            new AlertDialog.Builder(this).setTitle("Editar email institucional").setView(emailInstitucional).setPositiveButton("Salvar", (d, w) ->{
-                String novoEmailInstitucional = emailInstitucional.getText().toString().trim();
-
-                if(novoEmailInstitucional.contains("@.sp.gov")){
-                    txtEmailInstitucional.setText(novoEmailInstitucional);
-                    txtEmailInstitucional.setVisibility(VISIBLE);
-                    Toast.makeText(this, "Email institucional salvo", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(this, "Por-favor insira um email válido", Toast.LENGTH_SHORT).show();
+                else if(which == 2){
+                    new AlertDialog.Builder(this).setTitle("Editar email institucional").setView(emailInstitucional).setPositiveButton("Salvar", (d, w) ->{
+                                String novoEmailInstitucional = emailInstitucional.getText().toString().trim();
+                                if(novoEmailInstitucional.contains("@etec.sp.gov")){
+                                    salvarEmailInstitucional(novoEmailInstitucional);
+                                    txtEmailInstitucional.setText(novoEmailInstitucional);
+                                    txtEmailInstitucional.setVisibility(VISIBLE);
+                                    Toast.makeText(this, "Email institucional salvo", Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Toast.makeText(this, "Por-favor insira um email válido", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .setNegativeButton("Cancelar", null)
+                            .show();
                 }
-            })
+                    })
                     .setNegativeButton("Cancelar", null)
                     .show();
         });
@@ -273,6 +276,28 @@ public class AreaAluno extends AppCompatActivity {
 
     }
 
+    private void salvarEmailInstitucional(String email){
+        try{
+            SQLiteDatabase bd = bancoDados.getWritableDatabase();
+            ContentValues valores = new ContentValues();
+            valores.put("email_institucional", email);
+
+            Cursor cursor = bd.rawQuery("SELECT * FROM alunos WHERE id_aluno = 1", null);
+            if(cursor.moveToFirst()){
+                bd.update("alunos", valores, "id_aluno = ?", new String[]{"1"});
+            }else{
+                valores.put("id_aluno", 1);
+                bd.insert("alunos", null, valores);
+            }
+            cursor.close();
+            bd.close();
+
+        }catch (Exception a){
+            System.out.println("Sei nem aonde eu consigo acessar o log");
+            a.printStackTrace();
+        }
+    }
+
     private void salvarTarefa(String titulo, String descricao){
         try {
             SQLiteDatabase bd = bancoDados.getWritableDatabase();
@@ -312,57 +337,64 @@ public class AreaAluno extends AppCompatActivity {
         SQLiteDatabase bd = bancoDados.getWritableDatabase();
         Cursor cursor = bd.rawQuery("SELECT tituloTarefa, descricaoTarefa FROM tarefas WHERE id_tarefa = ?", new String[]{String.valueOf(idTarefa)});
 
-        if(cursor.moveToFirst()){
-            String tituloTarefaAtual = cursor.getString(0);
-            String descricaoTarefaAtual = cursor.getString(1);
+        try {
+            if (cursor.moveToFirst()) {
+                String tituloTarefaAtual = cursor.getString(0);
+                String descricaoTarefaAtual = cursor.getString(1);
 
-            EditText Caixatitulo = new EditText(this);
-            Caixatitulo.setTextAlignment(TEXT_ALIGNMENT_CENTER);
-            Caixatitulo.setText(tituloTarefaAtual);
-            Caixatitulo.setHint("Titulo da tarefa");
+                EditText Caixatitulo = new EditText(this);
+                Caixatitulo.setTextAlignment(TEXT_ALIGNMENT_CENTER);
+                Caixatitulo.setText(tituloTarefaAtual);
+                Caixatitulo.setHint("Titulo da tarefa");
 
-            EditText CaixaDescricao = new EditText(this);
-            CaixaDescricao.setTextAlignment(TEXT_ALIGNMENT_CENTER);
-            CaixaDescricao.setText(descricaoTarefaAtual);
-            CaixaDescricao.setHint("Descrição da tarefa");
+                EditText CaixaDescricao = new EditText(this);
+                CaixaDescricao.setTextAlignment(TEXT_ALIGNMENT_CENTER);
+                CaixaDescricao.setText(descricaoTarefaAtual);
+                CaixaDescricao.setHint("Descrição da tarefa");
 
-            ContentValues valores = new ContentValues();
+                ContentValues valores = new ContentValues();
 
-            new AlertDialog.Builder(this).setTitle("Titulo da tarefa")
-                    .setView(Caixatitulo)
-                    .setPositiveButton("Proximo", (dialog, which) -> {
+                new AlertDialog.Builder(this).setTitle("Titulo da tarefa")
+                        .setView(Caixatitulo)
+                        .setPositiveButton("Proximo", (dialog, which) -> {
                             String novoTitulo = Caixatitulo.getText().toString().trim();
-                        if(!novoTitulo.isEmpty()) {
-                            valores.put("tituloTarefa", novoTitulo);
+                            if (!novoTitulo.isEmpty()) {
+                                valores.put("tituloTarefa", novoTitulo);
 
-                            new AlertDialog.Builder(this).setTitle("Descrição da tarefa")
-                                    .setView(CaixaDescricao).setPositiveButton("Atualizar tarefa", (di, wi) -> {
-                                        String novaDescricao = CaixaDescricao.getText().toString().trim();
-                                        if(!novaDescricao.isEmpty()) {
-                                            valores.put("descricaoTarefa", novaDescricao);
+                                new AlertDialog.Builder(this).setTitle("Descrição da tarefa")
+                                        .setView(CaixaDescricao).setPositiveButton("Atualizar tarefa", (di, wi) -> {
+                                            String novaDescricao = CaixaDescricao.getText().toString().trim();
+                                            if (!novaDescricao.isEmpty()) {
+                                                valores.put("descricaoTarefa", novaDescricao);
 
-                                            bd.update("tarefas", valores, "id_tarefa = ?", new String[]{String.valueOf(idTarefa)});
-                                            carregarTarefas();
-                                            Toast.makeText(this, "Tarefa atualizada", Toast.LENGTH_SHORT).show();
+                                                SQLiteDatabase bdAtualizar = bancoDados.getWritableDatabase();
 
-                                        }else{
-                                            Toast.makeText(this, "Por-favor, insira uma descrição válida",Toast.LENGTH_SHORT).show();
-                                        }
-                                    }).setNegativeButton("Cancelar", null)
-                                    .show();
+                                                bdAtualizar.update("tarefas", valores, "id_tarefa = ?", new String[]{String.valueOf(idTarefa)});
+                                                bdAtualizar.close();
+                                                carregarTarefas();
+                                                Toast.makeText(this, "Tarefa atualizada", Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                Toast.makeText(this, "Por-favor, insira uma descrição válida", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }).setNegativeButton("Cancelar", null)
+                                        .show();
 
-                        }else{
-                            Toast.makeText(this, "Por-favor, insira um titulo válido", Toast.LENGTH_SHORT).show();
-                        }
-                    }).setNegativeButton("Cancelar", null)
-                    .show();
+                            } else {
+                                Toast.makeText(this, "Por-favor, insira um titulo válido", Toast.LENGTH_SHORT).show();
+                            }
+                        }).setNegativeButton("Cancelar", null)
+                        .show();
+
+                cursor.close();
+                bd.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        cursor.close();
-        bd.close();
     }
     private void carregarDadosAluno(){
         SQLiteDatabase bd = bancoDados.getReadableDatabase();
-        Cursor cursor = bd.rawQuery("SELECT nomeAluno, fotoAluno FROM ALUNOS WHERE id_aluno = 1", null);
+        Cursor cursor = bd.rawQuery("SELECT nomeAluno, fotoAluno, email_institucional FROM ALUNOS WHERE id_aluno = 1", null);
 
         if(cursor.moveToFirst()){
             String nomeSalvo = cursor.getString(0);
@@ -372,6 +404,12 @@ public class AreaAluno extends AppCompatActivity {
             if(imagemBytes != null){
                 Bitmap bitmap = BitmapFactory.decodeByteArray(imagemBytes, 0, imagemBytes.length);
                 capaAluno.setImageBitmap(bitmap);
+            }
+
+            String emailSalvo = cursor.getString(2);
+            if(!emailSalvo.isEmpty()) {
+                txtEmailInstitucional.setText(emailSalvo);
+                txtEmailInstitucional.setVisibility(VISIBLE);
             }
         }
         bd.close();
