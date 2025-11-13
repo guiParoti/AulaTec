@@ -23,7 +23,6 @@ import java.util.ArrayList;
 
 public class ListaAulas extends AppCompatActivity {
     String diaSemana;
-    String modulo;
 
 
     @Override
@@ -79,25 +78,6 @@ public class ListaAulas extends AppCompatActivity {
                             break;
                     }
 
-                    switch (idModulo){
-                        case 1:
-                            modulo = "1°DS A";
-                            break;
-                        case 2:
-                            modulo = "1°DS B";
-                            break;
-                        case 3:
-                            modulo = "2°DS A";
-                            break;
-                        case 4:
-                            modulo = "2°DS B";
-                            break;
-                        case 5:
-                            modulo = "3°DS";
-                            break;
-
-                    }
-
                     String nomeAula = cursor.getString(1);
                     String horaInicio = cursor.getString(2);
                     String horaFim = cursor.getString(3);
@@ -106,11 +86,21 @@ public class ListaAulas extends AppCompatActivity {
 
                     if(lab == 0) {
                         String maker = "Maker";
-                        lista.add("\n" + diaSemana + "\n" + modulo + "\n" + nomeAula + "\n" + horaInicio + " - " + horaFim + "\n"
-                                + nomeProfessor + "\nLab: " + maker + "\n");
+                        if(horaInicio.equals("19:00") && horaFim.equals("20:40")) {
+                            lista.add("\n" + diaSemana + "\n1°Aula\n" + nomeAula + "\n" + horaInicio + " - " + horaFim + "\n"
+                                    + nomeProfessor + "\nLab: " + maker + "\n");
+                        }else {
+                            lista.add("\n" + diaSemana + "\n2°Aula\n" + nomeAula + "\n" + horaInicio + " - " + horaFim + "\n"
+                                    + nomeProfessor + "\nLab: " + maker + "\n");
+                        }
                     }else{
-                        lista.add("\n" + diaSemana + "\n" + modulo + "\n" + nomeAula + "\n" + horaInicio + " - " + horaFim + "\n"
-                                + nomeProfessor + "\nLab: " + lab + "\n");
+                        if(horaInicio.equals("19:00") && horaFim.equals("20:40")) {
+                            lista.add("\n" + diaSemana + "\n1°Aula\n" + nomeAula + "\n" + horaInicio + " - " + horaFim + "\n"
+                                    + nomeProfessor + "\nLab: " + lab + "\n");
+                        }else {
+                            lista.add("\n" + diaSemana + "\n2°Aula\n" + nomeAula + "\n" + horaInicio + " - " + horaFim + "\n"
+                                    + nomeProfessor + "\nLab: " + lab + "\n");
+                        }
                     }
                 }while (cursor.moveToNext());
             }

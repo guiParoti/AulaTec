@@ -31,6 +31,15 @@
                 android:textStyle="bold" />
 
             <!-- Lista de aulas -->
+            <TextView
+                android:id="@+id/txtTurma"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3DS"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
             <ScrollView
                 android:id="@+id/scrollAulas"
                 android:layout_width="match_parent"

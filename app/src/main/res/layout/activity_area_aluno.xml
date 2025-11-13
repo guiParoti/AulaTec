@@ -21,17 +21,18 @@
             android:layout_height="150dp"
             android:layout_marginTop="50dp"
             android:layout_marginBottom="1dp"
-            android:scaleType="centerCrop"
+            android:background="@drawable/arredondar_borda"
             android:clipToOutline="true"
-            android:src="@android:drawable/ic_menu_gallery"
-            android:background="@drawable/arredondar_borda"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/default_user"
+            tools:srcCompat="@drawable/default_user" />
 
         <TextView
             android:id="@+id/txtNomeAluno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Nome do Aluno"
+            android:text="Aluno(a)"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold" />

@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String nomeBanco = "etec.db"; // Nome do banco de dados
-    private static final int versaoBanco = 52; // Versão do Banco (usado pra atualizar a tabela)
+    private static final int versaoBanco = 53; // Versão do Banco (usado pra atualizar a tabela)
 
 
 
@@ -54,6 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "id_tarefa INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "tituloTarefa TEXT," +
                 "descricaoTarefa TEXT," +
+                "status TEXT DEFAULT 'PENDENTE'," +
                 "id_aluno INTEGER," +
                 "FOREIGN KEY (id_aluno) REFERENCES alunos(id_aluno))");
 

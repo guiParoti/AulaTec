@@ -207,6 +207,14 @@ public class AreaAluno extends AppCompatActivity {
                                     .setNegativeButton("Não", null)
                                     .show();;
 
+                        }else if(which == 2){
+                            new AlertDialog.Builder(this).setTitle("Confirmação")
+                                    .setMessage("Tem certeza que deseja marcar como concluido?")
+                                    .setPositiveButton("Sim", (dialogo, qual) -> {
+                                        marcarComoConcluido(idTarefaSelecionada);
+                                    })
+                                    .setNegativeButton("Cancelar", null)
+                                    .show();
                         }
                     }).setNegativeButton("Cancelar", null)
                     .show();
@@ -229,7 +237,7 @@ public class AreaAluno extends AppCompatActivity {
     private void salvarImagemAluno(Bitmap bitmap){
         try{
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, stream);
             byte[] imagemBytes = stream.toByteArray();
 
             SQLiteDatabase bd = bancoDados.getWritableDatabase();
@@ -392,6 +400,21 @@ public class AreaAluno extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    private void marcarComoConcluido(int idTarefa){
+        SQLiteDatabase bd = bancoDados.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("status", "CONCLUIDO");
+
+        try{
+            bd.update("tarefas", values, "id_tarefa = ?", new String[]{String.valueOf(idTarefa)});
+            bd.close();
+            carregarTarefas();
+            Toast.makeText(this, "Tarefa concluida!", Toast.LENGTH_SHORT).show();
+        }catch (Exception a){
+            a.printStackTrace();
+        }
+    }
     private void carregarDadosAluno(){
         SQLiteDatabase bd = bancoDados.getReadableDatabase();
         Cursor cursor = bd.rawQuery("SELECT nomeAluno, fotoAluno, email_institucional FROM ALUNOS WHERE id_aluno = 1", null);
@@ -401,24 +424,23 @@ public class AreaAluno extends AppCompatActivity {
             txtNomeAluno.setText(nomeSalvo);
 
             byte[] imagemBytes = cursor.getBlob(1);
-            if(imagemBytes != null){
-                Bitmap bitmap = BitmapFactory.decodeByteArray(imagemBytes, 0, imagemBytes.length);
-                capaAluno.setImageBitmap(bitmap);
+            if(imagemBytes != null && imagemBytes.length > 0){
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(imagemBytes, 0, imagemBytes.length);
+                    capaAluno.setImageBitmap(bitmap);
             }
-
             String emailSalvo = cursor.getString(2);
-            if(!emailSalvo.isEmpty()) {
+            if(emailSalvo != null && !emailSalvo.isEmpty()) {
                 txtEmailInstitucional.setText(emailSalvo);
                 txtEmailInstitucional.setVisibility(VISIBLE);
             }
         }
-        bd.close();
         cursor.close();
+        bd.close();
     }
 
     private void carregarTarefas(){
         SQLiteDatabase bd = bancoDados.getReadableDatabase();
-        Cursor cursor = bd.rawQuery("SELECT id_tarefa, tituloTarefa, descricaoTarefa FROM tarefas WHERE id_aluno = 1", null);
+        Cursor cursor = bd.rawQuery("SELECT id_tarefa, tituloTarefa, descricaoTarefa, status FROM tarefas WHERE id_aluno = 1", null);
 
         listaTarefasIds = new ArrayList<>();
         listaTarefasValores = new ArrayList<>();
@@ -428,9 +450,10 @@ public class AreaAluno extends AppCompatActivity {
                 int idTarefa = cursor.getInt(0);
                 String tituloTarefa = cursor.getString(1);
                 String descricaoTarefa = cursor.getString(2);
+                String statusTarefa = cursor.getString(3);
 
                 listaTarefasIds.add(idTarefa);
-                listaTarefasValores.add(tituloTarefa + "\n" + descricaoTarefa);
+                listaTarefasValores.add(tituloTarefa + "\n" + descricaoTarefa + "\nStatus: " + statusTarefa);
             }while(cursor.moveToNext());
         }
         cursor.close();
