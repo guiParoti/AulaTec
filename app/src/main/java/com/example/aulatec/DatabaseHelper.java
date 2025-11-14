@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String nomeBanco = "etec.db"; // Nome do banco de dados
-    private static final int versaoBanco = 53; // Versão do Banco (usado pra atualizar a tabela)
+    private static final int versaoBanco = 54; // Versão do Banco (usado pra atualizar a tabela)
 
 
 
@@ -129,47 +129,47 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // Aulas do 1°DS TURMA A
         bd.execSQL("INSERT INTO aulas (diaSemana, nomeAula, horaInicio, horaFim, lab, id_professor, id_modulo)" +
-                "VALUES (2,'PA', '19:00', '20:40', null, 9, 1)");
+                "VALUES (2,'PA', '19:00', '20:40', 4, 9, 1)");
         bd.execSQL("INSERT INTO aulas (diaSemana, nomeAula, horaInicio, horaFim, lab, id_professor, id_modulo)" +
-                "VALUES (2, 'BANCO DADOS 1', '21:08', '22:50', null, 4, 1)");
+                "VALUES (2, 'BANCO DADOS 1', '21:08', '22:50', 10, 4, 1)");
         bd.execSQL("INSERT INTO aulas (diaSemana, nomeAula, horaInicio, horaFim, lab, id_professor, id_modulo)" +
-                "VALUES (3, 'OSA', '19:00', '20:40', null, 9, 1)");
+                "VALUES (3, 'OSA', '19:00', '20:40', 4, 9, 1)");
         bd.execSQL("INSERT INTO aulas (diaSemana, nomeAula, horaInicio, horaFim, lab, id_professor, id_modulo)" +
-                "VALUES (3, 'PWEB1', '21:08', '22:50', null, 2, 1)");
+                "VALUES (3, 'PWEB1', '21:08', '22:50', 6, 2, 1)");
         bd.execSQL("INSERT INTO aulas (diaSemana, nomeAula, horaInicio, horaFim, lab, id_professor, id_modulo)" +
-                "VALUES (4, 'PA', '19:00', '20:40', null, 9, 1)");
+                "VALUES (4, 'PA', '19:00', '20:40', 5, 9, 1)");
         bd.execSQL("INSERT INTO aulas (diaSemana, nomeAula, horaInicio, horaFim, lab, id_professor, id_modulo)" +
-                "VALUES (4, 'PWEB1', '21:08', '22:50', null, 2, 1)");
+                "VALUES (4, 'PWEB1', '21:08', '22:50', 6, 2, 1)");
         bd.execSQL("INSERT INTO aulas (diaSemana, nomeAula, horaInicio, horaFim, lab, id_professor, id_modulo)" +
-                "VALUES (5, 'DESIGN DIGITAL', '19:00', '20:40', null, 3, 1)");
+                "VALUES (5, 'DESIGN DIGITAL', '19:00', '20:40', 5, 3, 1)");
         bd.execSQL("INSERT INTO aulas (diaSemana, nomeAula, horaInicio, horaFim, lab, id_professor, id_modulo)" +
-                "VALUES (5, 'ECO', '21:08', '22:50', null, 5, 1)");
+                "VALUES (5, 'ÉTICA', '21:08', '22:50', 15, 10, 1)");
         bd.execSQL("INSERT INTO aulas (diaSemana, nomeAula, horaInicio, horaFim, lab, id_professor, id_modulo)" +
-                "VALUES (6, 'FUNDAMENTOS DA INFORMáTICA', '19:00', '20:40', null, 5, 1)");
+                "VALUES (6, 'FUNDAMENTOS DA INFORMáTICA', '19:00', '20:40', 3, 5, 1)");
         bd.execSQL("INSERT INTO aulas (diaSemana, nomeAula, horaInicio, horaFim, lab, id_professor, id_modulo)" +
-                "VALUES (6, 'INGLES', '21:08', '22:50', null, 8, 1)");
+                "VALUES (6, 'INGLES', '21:08', '22:50', 15, 8, 1)");
 
         // Aulas do 1°DS TURMA B
         bd.execSQL("INSERT INTO aulas (diaSemana, nomeAula, horaInicio, horaFim, lab, id_professor, id_modulo)" +
-                "VALUES (2,'FUNDAMENTOS DA INFORMÁTICA', '19:00', '20:40', null, 5, 2)");
+                "VALUES (2,'FUNDAMENTOS DA INFORMÁTICA', '19:00', '20:40', 3, 5, 2)");
         bd.execSQL("INSERT INTO aulas (diaSemana, nomeAula, horaInicio, horaFim, lab, id_professor, id_modulo)" +
-                "VALUES (2, 'PWEB1', '21:08', '22:50', null, 2, 2)");
+                "VALUES (2, 'PWEB1', '21:08', '22:50', 6, 2, 2)");
         bd.execSQL("INSERT INTO aulas (diaSemana, nomeAula, horaInicio, horaFim, lab, id_professor, id_modulo)" +
-                "VALUES (3, 'BANCO DADOS 1', '19:00', '20:40', null, 4, 2)");
+                "VALUES (3, 'BANCO DADOS 1', '19:00', '20:40', 10, 4, 2)");
         bd.execSQL("INSERT INTO aulas (diaSemana, nomeAula, horaInicio, horaFim, lab, id_professor, id_modulo)" +
-                "VALUES (3, 'PA', '21:08', '22:50', null, 9, 2)");
+                "VALUES (3, 'PA', '21:08', '22:50', 5, 9, 2)");
         bd.execSQL("INSERT INTO aulas (diaSemana, nomeAula, horaInicio, horaFim, lab, id_professor, id_modulo)" +
-                "VALUES (4, 'PWEB1', '19:00', '20:40', null, 2, 2)");
+                "VALUES (4, 'PWEB1', '19:00', '20:40', 6, 2, 2)");
         bd.execSQL("INSERT INTO aulas (diaSemana, nomeAula, horaInicio, horaFim, lab, id_professor, id_modulo)" +
-                "VALUES (4, 'DESIGN DIGITAL', '21:08', '22:50', null, 3, 2)");
+                "VALUES (4, 'DESIGN DIGITAL', '21:08', '22:50', 5, 3, 2)");
         bd.execSQL("INSERT INTO aulas (diaSemana, nomeAula, horaInicio, horaFim, lab, id_professor, id_modulo)" +
-                "VALUES (5, 'OSA', '19:00', '20:40', null, 9, 2)");
+                "VALUES (5, 'OSA', '19:00', '20:40', 4, 9, 2)");
         bd.execSQL("INSERT INTO aulas (diaSemana, nomeAula, horaInicio, horaFim, lab, id_professor, id_modulo)" +
-                "VALUES (5, 'ECO', '21:08', '22:50', null, 5, 2)");
+                "VALUES (5, 'ÉTICA', '21:08', '22:50', 15, 10, 2)");
         bd.execSQL("INSERT INTO aulas (diaSemana, nomeAula, horaInicio, horaFim, lab, id_professor, id_modulo)" +
-                "VALUES (6, 'PA', '19:00', '20:40', null, 9, 2)");
+                "VALUES (6, 'PA', '19:00', '20:40', 5, 9, 2)");
         bd.execSQL("INSERT INTO aulas (diaSemana, nomeAula, horaInicio, horaFim, lab, id_professor, id_modulo)" +
-                "VALUES (6, 'INGLÊS', '21:08', '22:50', null, 8, 2)");
+                "VALUES (6, 'INGLÊS', '21:08', '22:50', 15, 8, 2)");
 
 
         // Insere o nome dos professores e seus emails(se tiver) fixos no banco
@@ -191,6 +191,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "VALUES ('Fabricio', 'fabricio.bernado@etec.sp.gov.com')"); // id_professor(8)
         bd.execSQL("INSERT INTO professores (nomeProf, emailProf)" +
                 "VALUES ('Guto', 'profgutomaze@gmail.com')"); // id_professor(9)
+        bd.execSQL("INSERT INTO professores (nomeProf, emailProf)" +
+                "VALUES ('Natalie', '')"); // id_professor(10)
 
         bd.execSQL("INSERT INTO modulos(id_modulo, nomeModulo, turma) " +
                 "VALUES(1, '1°DS', 'A')");
