@@ -61,7 +61,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="4dp"
-                        android:text="A Udemy é uma das maiores plataformas de ensino online do mundo, com milhares de cursos voltados para o desenvolvimento profissional e pessoal. Entre suas áreas mais populares, se destacam os cursos de programação, tecnologia da informação e desenvolvimento de software, ideais para quem deseja entrar ou se aperfeiçoar na área de T.I.  Na Udemy, é possível encontrar aulas ministradas por especialistas e profissionais do mercado, com conteúdos atualizados, linguagem acessível e exercícios práticos. A plataforma oferece cursos sobre Python, Java, C#, JavaScript, HTML, CSS, SQL, React, Node.js, Segurança da Informação, Inteligência Artificial, e muito mais — abrangendo desde o nível iniciante até o avançado.  Um dos grandes diferenciais é que, ao comprar um curso, o aluno tem acesso vitalício ao conteúdo, podendo assistir quando e quantas vezes quiser. A plataforma também permite baixar as aulas para estudo offline e oferece certificado de conclusão gratuito para a maioria dos cursos.  Com preços acessíveis e promoções frequentes, a Udemy é uma excelente opção para quem busca se capacitar na área de tecnologia, aprender novas linguagens de programação ou atualizar-se com as tendências do mercado de T.I."
+                        android:text="A Coursera é uma das maiores plataformas de ensino online do mundo, oferecendo cursos, especializações e certificações criadas por universidades renomadas como Stanford, MIT, Yale, além de empresas como Google, IBM e Meta. Seu diferencial está na profundidade e na qualidade acadêmica dos conteúdos, garantindo uma formação estruturada e reconhecida no mercado.  Para estudantes de TI, a plataforma é um excelente caminho para aprender programação, ciência de dados, inteligência artificial, segurança da informação, desenvolvimento mobile, entre muitas outras áreas. Muitos cursos incluem projetos práticos, exercícios guiados e trilhas completas que vão do básico ao avançado."
                         android:textColor="#333"
                         android:textSize="14sp" />
 
@@ -124,6 +124,56 @@
                         android:textColor="#1E88E5" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/capaJogo3"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/coursera_logo" />
+
+                    <TextView
+                        android:id="@+id/txtNomeJogo3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:text="Coursera"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtDescricaoJogo3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="4dp"
+                        android:text="A Coursera é uma das maiores plataformas de ensino online do mundo, oferecendo cursos, especializações e certificações criadas por universidades renomadas como Stanford, MIT, Yale, além de empresas como Google, IBM e Meta. Seu diferencial está na profundidade e na qualidade acadêmica dos conteúdos, garantindo uma formação estruturada e reconhecida no mercado.  Para estudantes de TI, a plataforma é um excelente caminho para aprender programação, ciência de dados, inteligência artificial, segurança da informação, desenvolvimento mobile, entre muitas outras áreas. Muitos cursos incluem projetos práticos, exercícios guiados e trilhas completas que vão do básico ao avançado."
+                        android:textColor="#333"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/txtLink3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autoLink="web"
+                        android:paddingTop="6dp"
+                        android:text="Acesse: https://www.coursera.org"
+                        android:textColor="#1E88E5" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
         </LinearLayout>
     </ScrollView>
 

@@ -18,7 +18,6 @@ public class TelaMod extends AppCompatActivity {
 
     private CheckBox checkLembrar;
     private SharedPreferences preferences;
-
     private String nomeAluno;
 
     @Override
@@ -66,7 +65,6 @@ public class TelaMod extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
 
     private void verificarModuloSalvo(){
         boolean lembrar = preferences.getBoolean("lembrar", false);

@@ -84,11 +84,6 @@ public class DetalhesProf extends AppCompatActivity {
                 txtAulas.setTextAlignment(TEXT_ALIGNMENT_CENTER);
                 containerProfessor.addView(txtAulas);
             }while (cursor.moveToNext());
-        }else{
-            TextView txtAulas = new TextView(this);
-            txtAulas.setText("Não tem aulas com esse professor nesse módulo");
-            txtAulas.setTextSize(20);
-            containerProfessor.addView(txtAulas);
         }
         cursor.close();
         db.close();

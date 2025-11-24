@@ -148,6 +148,88 @@
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/capaFilme4"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/matrix" />
+
+                    <TextView
+                        android:id="@+id/txtNomeFilme4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:text="Saga MATRIX"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtDescricaoFilme4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="4dp"
+                        android:text="A franquia Matrix é um dos maiores marcos da ficção científica moderna, misturando ação, filosofia e tecnologia de um jeito que marcou gerações. A história gira em torno de Neo, um programador e hacker que descobre que o mundo em que vive é, na verdade, uma simulação criada por máquinas — um sistema complexo onde cada pessoa está presa sem perceber. A partir daí, ele é lançado em uma jornada para entender a verdade, dominar suas habilidades dentro da simulação e lutar ao lado da resistência para libertar a humanidade.  Para estudantes e entusiastas de tecnologia, Matrix é um prato cheio: o filme aborda temas como inteligência artificial, realidade virtual, sistemas complexos, hackers, código e debates sobre o que é real e o que é apenas “renderizado” pela máquina. Além disso, seu visual icônico, conceitos de arquitetura de sistemas, representações de código e metáforas sobre escolhas e autonomia fazem a franquia se destacar até hoje."
+                        android:textColor="#333"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/capaFilme5"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/tron" />
+
+                    <TextView
+                        android:id="@+id/txtNomeFilme5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:text="Saga TRON"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtDescricaoFilme5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="4dp"
+                        android:text="A saga TRON é um clássico da ficção científica que leva o espectador literalmente para dentro do computador. A história acompanha programadores que são digitalizados e enviados a um universo virtual chamado Grid, onde programas ganham forma humana, sistemas têm personalidade própria e cada ação funciona como um comando em um grande ecossistema digital.  Misturando estética futurista, neon e trilhas marcantes, TRON explora temas como arquitetura de sistemas, inteligência artificial, virtualização, segurança digital e até conceitos de usuário x programa. É uma experiência que transforma o mundo da tecnologia em algo visualmente incrível, mostrando batalhas, jogos e cidades inteiras criadas a partir de lógica computacional."
+                        android:textColor="#333"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
         </LinearLayout>
     </ScrollView>
 

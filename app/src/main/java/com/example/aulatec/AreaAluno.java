@@ -46,7 +46,6 @@ import java.util.ArrayList;
 public class AreaAluno extends AppCompatActivity {
 
     private DatabaseHelper bancoDados;
-
     private static final int PEGAR_PEDIDO_DE_IMAGEM = 1;
     private ImageView capaAluno;
     private TextView txtNomeAluno;
@@ -54,8 +53,10 @@ public class AreaAluno extends AppCompatActivity {
     private String titulo;
     private String descricao;
     private ListView listaDeTarefas;
-    private ArrayList<String> listaTarefasValores;
-    private ArrayList<Integer> listaTarefasIds;
+    private String[] opcoesDialogBuilder;
+    private ArrayList<Tarefa> listaTarefas;
+    private TarefaAdapter tarefaAdapter;
+
 
 
 
@@ -187,11 +188,19 @@ public class AreaAluno extends AppCompatActivity {
 
 
         listaDeTarefas.setOnItemClickListener((parent, view, position, id) ->{
-            int idTarefaSelecionada = listaTarefasIds.get(position);
-            String tituloTarefa = listaTarefasValores.get(position);
 
-            String[] opcoesDialogBuilder = {"Editar tarefa","Excluir tarefa", "Marcar como concluída"};
+            Tarefa tarefaSelecionada = listaTarefas.get(position);
 
+            int idTarefaSelecionada = tarefaSelecionada.getId();
+            String tituloTarefaSelecionada = tarefaSelecionada.getTitulo();
+            String statusTarefaSelecionada = tarefaSelecionada.getStatus();
+
+
+            if(statusTarefaSelecionada.equals("CONCLUIDA")){
+                opcoesDialogBuilder = new String[]{"Editar tarefa", "Excluir tarefa", "Desmarcar como concluída"};
+            }else{
+                opcoesDialogBuilder = new String[]{"Editar tarefa", "Excluir tarefa", "Marcar como concluída"};
+            }
 
             new AlertDialog.Builder(this).setTitle("Escolha uma opção")
                     .setItems(opcoesDialogBuilder, (dialog, which) -> {
@@ -199,7 +208,7 @@ public class AreaAluno extends AppCompatActivity {
                            editarTarefa(idTarefaSelecionada);
                         }else if(which == 1){
                             new AlertDialog.Builder(this).setTitle("Excluir tarefa")
-                            .setMessage("Deseja realmente excluir essa tarefa \"" + tituloTarefa + "\"?")
+                            .setMessage("Deseja realmente excluir essa tarefa \"" + tituloTarefaSelecionada + "\"?")
                                     .setPositiveButton("Sim", (d, w) -> {
                                         deletarTarefa(idTarefaSelecionada);
                                         carregarTarefas();
@@ -208,17 +217,26 @@ public class AreaAluno extends AppCompatActivity {
                                     .show();;
 
                         }else if(which == 2){
-                            new AlertDialog.Builder(this).setTitle("Confirmação")
-                                    .setMessage("Tem certeza que deseja marcar como concluido?")
-                                    .setPositiveButton("Sim", (dialogo, qual) -> {
-                                        marcarComoConcluido(idTarefaSelecionada);
-                                    })
-                                    .setNegativeButton("Cancelar", null)
-                                    .show();
+                            if(!statusTarefaSelecionada.equals("CONCLUIDA")) {
+                                new AlertDialog.Builder(this).setTitle("Confirmação")
+                                        .setMessage("Tem certeza que deseja marcar como concluida?")
+                                        .setPositiveButton("Sim", (dialogo, qual) -> {
+                                            marcarComoConcluida(idTarefaSelecionada);
+                                        })
+                                        .setNegativeButton("Cancelar", null)
+                                        .show();
+                            }else{
+                                new AlertDialog.Builder(this).setTitle("Confirmação")
+                                        .setMessage("Tem certeza que deseja desmarcar como concluida?")
+                                        .setPositiveButton("Sim", (dialogo, qual) -> {
+                                            desmarcarComoConcluida(idTarefaSelecionada);
+                                        })
+                                        .setNegativeButton("Cancelar", null)
+                                        .show();
+                            }
                         }
                     }).setNegativeButton("Cancelar", null)
                     .show();
-
         });
 
         btnVoltarTelaMod.setOnClickListener(new View.OnClickListener() {
@@ -401,16 +419,30 @@ public class AreaAluno extends AppCompatActivity {
         }
     }
 
-    private void marcarComoConcluido(int idTarefa){
+    private void marcarComoConcluida(int idTarefa){
         SQLiteDatabase bd = bancoDados.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("status", "CONCLUIDO");
+        values.put("status", "CONCLUIDA");
 
         try{
             bd.update("tarefas", values, "id_tarefa = ?", new String[]{String.valueOf(idTarefa)});
             bd.close();
             carregarTarefas();
             Toast.makeText(this, "Tarefa concluida!", Toast.LENGTH_SHORT).show();
+        }catch (Exception a){
+            a.printStackTrace();
+        }
+    }
+
+    private void desmarcarComoConcluida(int idTarefa){
+        SQLiteDatabase bd = bancoDados.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("status", "PENDENTE");
+
+        try{
+            bd.update("tarefas", values, "id_tarefa = ?", new String[]{String.valueOf(idTarefa)});
+            bd.close();
+            carregarTarefas();
         }catch (Exception a){
             a.printStackTrace();
         }
@@ -442,8 +474,7 @@ public class AreaAluno extends AppCompatActivity {
         SQLiteDatabase bd = bancoDados.getReadableDatabase();
         Cursor cursor = bd.rawQuery("SELECT id_tarefa, tituloTarefa, descricaoTarefa, status FROM tarefas WHERE id_aluno = 1", null);
 
-        listaTarefasIds = new ArrayList<>();
-        listaTarefasValores = new ArrayList<>();
+        listaTarefas = new ArrayList<>();
 
         if(cursor.moveToFirst()){
             do {
@@ -452,15 +483,15 @@ public class AreaAluno extends AppCompatActivity {
                 String descricaoTarefa = cursor.getString(2);
                 String statusTarefa = cursor.getString(3);
 
-                listaTarefasIds.add(idTarefa);
-                listaTarefasValores.add(tituloTarefa + "\n" + descricaoTarefa + "\nStatus: " + statusTarefa);
+                listaTarefas.add(new Tarefa(idTarefa, tituloTarefa, descricaoTarefa, statusTarefa));
+
             }while(cursor.moveToNext());
         }
         cursor.close();
         bd.close();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaTarefasValores);
-        listaDeTarefas.setAdapter(adapter);
+        tarefaAdapter = new TarefaAdapter(AreaAluno.this, listaTarefas);
+        listaDeTarefas.setAdapter(tarefaAdapter);
     }
 
     private void aplicarCorTurma(String turma, Button btnEditar, Button btnNovaTarefa, Button btnVoltarMod){
