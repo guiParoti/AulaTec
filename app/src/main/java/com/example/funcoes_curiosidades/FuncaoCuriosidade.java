@@ -8,7 +8,7 @@ public class FuncaoCuriosidade {
     Random escolherIndice = new Random();
 
     public void escolherFuncaoCuriosidade(){
-        int indice = escolherIndice.nextInt(4);
+        int indice = escolherIndice.nextInt(6);
 
         switch(indice) {
             case 0:
@@ -22,6 +22,12 @@ public class FuncaoCuriosidade {
                 break;
             case 3:
                 gerarCuriosidadeJavaScript();
+                break;
+            case 4:
+                gerarCuriosidadeDeRedes();
+                break;
+            case 5:
+                gerarCuriosidadeDeCyberSeguranca();
                 break;
         }
     }
@@ -130,6 +136,32 @@ public class FuncaoCuriosidade {
 
         int indiceCurioJS = escolherIndice.nextInt(curioJS.length);
         this.setCuriosidadeEscolhida(curioJS[indiceCurioJS]);
+    }
+
+    public void gerarCuriosidadeDeRedes(){
+        String[] curioRedes = new String[3];
+
+        curioRedes[0] = "A palavra \"Internet\" vem de Inter-Network. Ou seja, ela não é um único sistema, mas sim milhares de redes interligadas no mundo todo trocando pacotes usando os mesmos protocolos.";
+        curioRedes[1] = "O primeiro site da história, criado em 1991 por Tim Berners-Lee, continua funcionando até hoje. Era apenas uma página explicando o que era a recém-criada “World Wide Web”.";
+        curioRedes[2] = "A maior parte da internet é atravessada por cabos submarinos.\nMais de 95% do tráfego mundial passa por cabos enterrados no fundo do oceano. Satélites representam uma parte bem pequena da transferência de dados.";
+
+        int indiceCurioRedes = escolherIndice.nextInt(curioRedes.length);
+        this.setCuriosidadeEscolhida(curioRedes[indiceCurioRedes]);
+
+    }
+
+    public void gerarCuriosidadeDeCyberSeguranca(){
+        String[] curioCyber = new String[3];
+
+        curioCyber[0] = "Mesmo com avisos constantes, relatórios mostram que milhões de pessoas continuam usando senhas extremamente fracas, como “123456”, “password” e “111111”.\n" +
+                "Isso facilita ataques de força bruta e invasões simples.";
+        curioCyber[1] = "Em 1986, os irmãos Basit e Amjad, do Paquistão, criaram o vírus Brain para testar a segurança de disquetes — e ele acabou se espalhando pelo mundo.\n" +
+                "Ele é considerado o primeiro vírus de PC da história.";
+        curioCyber[2] = "Habilitar 2FA (receber código no celular, app autenticador, biometria) reduz quase totalmente tentativas de acesso indevido.\n" +
+                "Mesmo se sua senha vazar, o hacker fica bloqueado.";
+
+        int indiceCurioCyber = escolherIndice.nextInt(curioCyber.length);
+        this.setCuriosidadeEscolhida(curioCyber[indiceCurioCyber]);
     }
     public String getCuriosidadeEscolhida(){
         return curiosidadeEscolhida;

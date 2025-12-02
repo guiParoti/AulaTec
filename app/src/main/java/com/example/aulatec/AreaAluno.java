@@ -4,6 +4,7 @@ import static android.view.View.TEXT_ALIGNMENT_CENTER;
 import static android.view.View.VISIBLE;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -41,7 +43,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class AreaAluno extends AppCompatActivity {
 
@@ -56,6 +61,7 @@ public class AreaAluno extends AppCompatActivity {
     private String[] opcoesDialogBuilder;
     private ArrayList<Tarefa> listaTarefas;
     private TarefaAdapter tarefaAdapter;
+    private String data;
 
 
 
@@ -174,9 +180,11 @@ public class AreaAluno extends AppCompatActivity {
                         if(!titulo.isEmpty()){
                             new AlertDialog.Builder(this).setTitle("Descrição da Tarefa")
                                     .setView(descricaoTarefa)
-                                    .setPositiveButton("Salvar tarefa", (dialogD, whichD) ->{
+                                    .setPositiveButton("Proximo", (dialogD, whichD) ->{
                                         descricao = descricaoTarefa.getText().toString().trim();
-                                        salvarTarefa(titulo, descricao);
+                                        if(!descricao.isEmpty()){
+                                            abrirCalendarioPrazoTarefa();
+                                        }
                                     })
                                     .setNegativeButton("Cancelar", null)
                                     .show();
@@ -325,11 +333,19 @@ public class AreaAluno extends AppCompatActivity {
     }
 
     private void salvarTarefa(String titulo, String descricao){
+        Calendar calendar = Calendar.getInstance();
+        Date diaCadastroDate = calendar.getTime();
+        SimpleDateFormat dataFormatada = new SimpleDateFormat("yy/mm/dd");
+        String diaCadastroString = dataFormatada.format(diaCadastroDate);
+
+
         try {
             SQLiteDatabase bd = bancoDados.getWritableDatabase();
             ContentValues valores = new ContentValues();
             valores.put("tituloTarefa", titulo);
             valores.put("descricaoTarefa", descricao);
+            valores.put("dia_cadastro", diaCadastroString);
+            valores.put("prazo", data);
             valores.put("id_aluno", 1);
 
             long resultado = bd.insert("tarefas", null, valores);
@@ -345,6 +361,24 @@ public class AreaAluno extends AppCompatActivity {
             System.out.println("Erro ao salvar a tarefa no banco, erro abaixo!");
             a.printStackTrace();
         }
+    }
+
+    private void abrirCalendarioPrazoTarefa(){
+        Calendar calendar = Calendar.getInstance();
+        int ano = calendar.get(Calendar.YEAR);
+        int mes = calendar.get(Calendar.MONTH);
+        int dia = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog dialogCalendario = new DatePickerDialog(this,
+                (view, anoSelecionado, mesSelecionado, diaSelecionado) -> {
+                    mesSelecionado += 1;
+
+                    String dataFormatada = String.format("Prazo da tarefa: %02d/%02d/%02d", anoSelecionado % 100, mesSelecionado, diaSelecionado);
+
+                    data = dataFormatada;
+                    salvarTarefa(titulo, descricao);
+                }, ano, mes, dia);
+        dialogCalendario.show();
     }
 
     private void deletarTarefa(int idTarefa){
@@ -472,7 +506,7 @@ public class AreaAluno extends AppCompatActivity {
 
     private void carregarTarefas(){
         SQLiteDatabase bd = bancoDados.getReadableDatabase();
-        Cursor cursor = bd.rawQuery("SELECT id_tarefa, tituloTarefa, descricaoTarefa, status FROM tarefas WHERE id_aluno = 1", null);
+        Cursor cursor = bd.rawQuery("SELECT id_tarefa, tituloTarefa, descricaoTarefa, status, prazo FROM tarefas WHERE id_aluno = 1", null);
 
         listaTarefas = new ArrayList<>();
 
@@ -482,8 +516,9 @@ public class AreaAluno extends AppCompatActivity {
                 String tituloTarefa = cursor.getString(1);
                 String descricaoTarefa = cursor.getString(2);
                 String statusTarefa = cursor.getString(3);
+                String prazo = cursor.getString(4);
 
-                listaTarefas.add(new Tarefa(idTarefa, tituloTarefa, descricaoTarefa, statusTarefa));
+                listaTarefas.add(new Tarefa(idTarefa, tituloTarefa, descricaoTarefa, statusTarefa, prazo));
 
             }while(cursor.moveToNext());
         }

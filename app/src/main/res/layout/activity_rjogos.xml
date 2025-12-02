@@ -302,6 +302,139 @@
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/capaJogo5"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/retro_gadgets" />
+
+                    <TextView
+                        android:id="@+id/txtNomeJogo5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:text="RETRO GADGETS"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtDescricaoJogo5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="4dp"
+                        android:text="Retro Gadgets é um jogo criativo e totalmente voltado para quem gosta de tecnologia, eletrônica e programação. Nele, você monta seus próprios dispositivos retrô — como consoles portáteis, mini-computadores, rádios e até máquinas malucas inventadas por você. Tudo é personalizável: carcaças, botões, telas, cabos, placas e componentes internos.  O diferencial é que você realmente programa o funcionamento do gadget, usando lógica e código para fazer luzes piscarem, menus funcionarem, animações rodarem e até jogos simples aparecerem no visor. O jogo estimula pensamento lógico, criatividade e experimentação, sendo perfeito para alunos de TI que gostam de entender “como as coisas funcionam”."
+                        android:textColor="#333"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/txtPlataformas5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
+                        android:text="Plataforma(s) disponíveis:"
+                        android:textColor="#333"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/layout_icones_plataformas5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="start"
+                        android:paddingTop="4dp">
+
+                        <ImageView
+                            android:id="@+id/icon_steam3"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginEnd="8dp"
+                            android:contentDescription="icone_steam"
+                            android:src="@drawable/icon_steam" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/capaJogo6"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/shenzhen" />
+
+                    <TextView
+                        android:id="@+id/txtNomeJogo6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:text="SHENZHEN I/O"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtDescricaoJogo6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="4dp"
+                        android:text="Shenzhen I/O é um jogo de lógica e programação onde você assume o papel de um engenheiro contratado para desenvolver circuitos eletrônicos na cidade de Shenzhen, polo mundial de tecnologia. No jogo, você monta placas, conecta componentes, escreve códigos em uma linguagem parecida com Assembly e resolve problemas que vão desde sistemas simples até dispositivos complexos usados em produtos reais.  É uma excelente recomendação para estudantes de TI porque estimula pensamento lógico, resolução de problemas, leitura de documentação, e dá uma noção muito próxima de como funciona a criação de hardware e firmware no mundo real."
+                        android:textColor="#333"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/txtPlataformas6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
+                        android:text="Plataforma(s) disponíveis:"
+                        android:textColor="#333"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/layout_icones_plataformas6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="start"
+                        android:paddingTop="4dp">
+
+                        <ImageView
+                            android:id="@+id/icon_steam4"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginEnd="8dp"
+                            android:contentDescription="icone_steam"
+                            android:src="@drawable/icon_steam" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
         </LinearLayout>
     </ScrollView>
 

@@ -46,11 +46,13 @@ public class TarefaAdapter extends BaseAdapter {
         TextView titulo = view.findViewById(R.id.txtTituloTarefa);
         TextView descricao = view.findViewById(R.id.txtDescricaoTarefa);
         TextView status = view.findViewById(R.id.txtStatusTarefa);
+        TextView prazo = view.findViewById(R.id.txtdiaPrazoTarefa);
 
         Tarefa tarefa = lista.get(position);
 
         titulo.setText(tarefa.getTitulo());
         descricao.setText(tarefa.getDescricao());
+        prazo.setText(tarefa.getPrazo());
 
         if(tarefa.getStatus().equalsIgnoreCase("CONCLUIDA")) {
             status.setText("CONCLUÍDA");

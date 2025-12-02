@@ -5,12 +5,15 @@ public class Tarefa {
     private String titulo;
     private String descricao;
     private String status;
+    private String prazo;
 
-    public Tarefa(int id, String titulo, String descricao, String status){
+    public Tarefa(int id, String titulo, String descricao, String status, String prazo){
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
         this.status = status;
+        this.prazo = prazo;
+
     }
 
     public int getId(){
@@ -28,4 +31,6 @@ public class Tarefa {
     public String getStatus(){
         return status;
     }
+
+    public String getPrazo() {return  prazo;}
 }
