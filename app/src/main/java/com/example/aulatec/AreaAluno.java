@@ -333,18 +333,12 @@ public class AreaAluno extends AppCompatActivity {
     }
 
     private void salvarTarefa(String titulo, String descricao){
-        Calendar calendar = Calendar.getInstance();
-        Date diaCadastroDate = calendar.getTime();
-        SimpleDateFormat dataFormatada = new SimpleDateFormat("yy/mm/dd");
-        String diaCadastroString = dataFormatada.format(diaCadastroDate);
-
 
         try {
             SQLiteDatabase bd = bancoDados.getWritableDatabase();
             ContentValues valores = new ContentValues();
             valores.put("tituloTarefa", titulo);
             valores.put("descricaoTarefa", descricao);
-            valores.put("dia_cadastro", diaCadastroString);
             valores.put("prazo", data);
             valores.put("id_aluno", 1);
 
@@ -373,9 +367,10 @@ public class AreaAluno extends AppCompatActivity {
                 (view, anoSelecionado, mesSelecionado, diaSelecionado) -> {
                     mesSelecionado += 1;
 
-                    String dataFormatada = String.format("Prazo da tarefa: %02d/%02d/%02d", anoSelecionado % 100, mesSelecionado, diaSelecionado);
+                    String dataFormatada = String.format("%02d/%02d/%02d", diaSelecionado, mesSelecionado, anoSelecionado % 100);
+                    String dataFormatadaTexto = ("Prazo da tarefa: " + dataFormatada);
 
-                    data = dataFormatada;
+                    data = dataFormatadaTexto;
                     salvarTarefa(titulo, descricao);
                 }, ano, mes, dia);
         dialogCalendario.show();
@@ -456,11 +451,20 @@ public class AreaAluno extends AppCompatActivity {
     private void marcarComoConcluida(int idTarefa){
         SQLiteDatabase bd = bancoDados.getWritableDatabase();
         ContentValues values = new ContentValues();
+
+        Calendar calendar = Calendar.getInstance();
+        Date diaCadastroDate = calendar.getTime();
+        SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yy");
+        String diaConclusaoTarefa = dataFormatada.format(diaCadastroDate);
+        String diaConclusaoTexto = ("Concluída: " + diaConclusaoTarefa);
+
         values.put("status", "CONCLUIDA");
+        values.put("tarefa_concluida", diaConclusaoTexto);
 
         try{
             bd.update("tarefas", values, "id_tarefa = ?", new String[]{String.valueOf(idTarefa)});
             bd.close();
+            data = diaConclusaoTarefa;
             carregarTarefas();
             Toast.makeText(this, "Tarefa concluida!", Toast.LENGTH_SHORT).show();
         }catch (Exception a){
@@ -506,7 +510,7 @@ public class AreaAluno extends AppCompatActivity {
 
     private void carregarTarefas(){
         SQLiteDatabase bd = bancoDados.getReadableDatabase();
-        Cursor cursor = bd.rawQuery("SELECT id_tarefa, tituloTarefa, descricaoTarefa, status, prazo FROM tarefas WHERE id_aluno = 1", null);
+        Cursor cursor = bd.rawQuery("SELECT id_tarefa, tituloTarefa, descricaoTarefa, status, prazo, tarefa_concluida FROM tarefas WHERE id_aluno = 1", null);
 
         listaTarefas = new ArrayList<>();
 
@@ -517,8 +521,13 @@ public class AreaAluno extends AppCompatActivity {
                 String descricaoTarefa = cursor.getString(2);
                 String statusTarefa = cursor.getString(3);
                 String prazo = cursor.getString(4);
+                String concluida = cursor.getString(5);
 
-                listaTarefas.add(new Tarefa(idTarefa, tituloTarefa, descricaoTarefa, statusTarefa, prazo));
+                if(statusTarefa.equalsIgnoreCase("CONCLUIDA")){
+                    listaTarefas.add(new Tarefa(idTarefa, tituloTarefa, descricaoTarefa, statusTarefa, concluida));
+                }else{
+                    listaTarefas.add(new Tarefa(idTarefa, tituloTarefa, descricaoTarefa, statusTarefa, prazo));
+                }
 
             }while(cursor.moveToNext());
         }
